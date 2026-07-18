@@ -8,7 +8,7 @@ Recommended repository name: `tourism-crowd-parking-alert`
 
 ## Domain candidates
 
-First candidate: `tourismparking.jp`
+Confirmed domain: `tourismparking.jp`
 
 Other candidates:
 
