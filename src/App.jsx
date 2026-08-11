@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 const saveKey = 'tourism-crowd-parking-alert.saved'
@@ -77,6 +77,66 @@ const categoryBlueprints = [
     revenue: '飲食送客',
     source: '商店会情報 + ユーザー投稿',
   },
+  {
+    key: 'food-coupon',
+    category: '飲食',
+    label: '周辺飲食クーポン通知',
+    window: '12:00-14:00',
+    baseScore: 88,
+    channels: ['LINE', 'X', 'メール'],
+    revenue: '飲食送客',
+    source: '飲食店公開情報 + 口コミ投稿',
+  },
+  {
+    key: 'ticket-sale',
+    category: 'チケット',
+    label: '当日券・割引枠通知',
+    window: '10:00-16:00',
+    baseScore: 87,
+    channels: ['LINE', 'メール'],
+    revenue: 'チケット affiliate',
+    source: 'チケット販売情報 + 施設案内',
+  },
+  {
+    key: 'event-traffic',
+    category: 'イベント',
+    label: 'イベント開催日交通警戒',
+    window: '16:00-20:00',
+    baseScore: 86,
+    channels: ['LINE', 'X', 'Slack'],
+    revenue: '地域広告',
+    source: '自治体イベント情報 + 現地投稿',
+  },
+  {
+    key: 'family-route',
+    category: 'ファミリー',
+    label: '子連れ優先ルート通知',
+    window: '09:00-12:00',
+    baseScore: 85,
+    channels: ['LINE', 'メール'],
+    revenue: '観光予約',
+    source: '家族向け口コミ + 観光協会案内',
+  },
+  {
+    key: 'night-lightup',
+    category: '夜間観光',
+    label: 'ライトアップ混雑通知',
+    window: '18:00-21:00',
+    baseScore: 84,
+    channels: ['LINE', 'X'],
+    revenue: '観光予約',
+    source: '施設営業時間情報 + 現地SNS投稿',
+  },
+  {
+    key: 'rain-shift',
+    category: '雨天代替',
+    label: '雨天時代替スポット通知',
+    window: '08:00-10:00',
+    baseScore: 83,
+    channels: ['LINE', 'メール', 'Slack'],
+    revenue: '地域広告',
+    source: '天候API想定 + 施設公開情報',
+  },
 ]
 
 const alerts = locationSeeds.flatMap((location, locationIndex) => (
@@ -132,8 +192,10 @@ function readArray(key) {
 }
 
 function App() {
+  const pageSize = 24
   const [query, setQuery] = useState('名古屋')
   const [category, setCategory] = useState('すべて')
+  const [page, setPage] = useState(1)
   const [saved, setSaved] = useState(() => readArray(saveKey))
   const [posts, setPosts] = useState(() => readArray(postKey))
   const [form, setForm] = useState({ title: '', channel: 'LINE', memo: '' })
@@ -154,6 +216,13 @@ function App() {
     ].join(' ')
     return text.includes(query) && (category === 'すべて' || item.category === category)
   }), [query, category])
+
+  const visibleAlerts = useMemo(() => filtered.slice(0, page * pageSize), [filtered, page])
+  const hasMore = visibleAlerts.length < filtered.length
+
+  useEffect(() => {
+    setPage(1)
+  }, [query, category])
 
   function toggleSave(id) {
     const next = saved.includes(id) ? saved.filter((item) => item !== id) : [...saved, id]
@@ -194,8 +263,12 @@ function App() {
         <article><span>Saved</span><strong>{saved.length}</strong></article>
         <article><span>UGC</span><strong>{posts.length}</strong></article>
       </section>
+      <section className="controls" aria-label="表示状態">
+        <p>表示中: {visibleAlerts.length} / 検索一致: {filtered.length}</p>
+        {hasMore ? <button type="button" onClick={() => setPage((value) => value + 1)}>さらに24件表示</button> : <span>すべて表示済み</span>}
+      </section>
       <section className="alert-grid">
-        {filtered.map((alert) => (
+        {visibleAlerts.map((alert) => (
           <article className="alert-card" key={alert.id}>
             <div className="card-top"><span>{alert.area} / {alert.category}</span><b>{alert.score}</b></div>
             <h2>{alert.title}</h2>
