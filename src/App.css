@@ -301,6 +301,44 @@ button,
 	padding: 20px;
 }
 
+.pref-heatmap {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 10px;
+}
+
+.pref-tile {
+	min-height: 110px;
+	display: grid;
+	gap: 6px;
+	align-content: start;
+	justify-items: start;
+	text-align: left;
+	border: 1px solid rgba(31, 35, 32, .14);
+}
+
+.pref-tile strong,
+.pref-tile span,
+.pref-tile small {
+	color: #fff;
+}
+
+.pref-tile.heat-1 {
+	background: #7a8d7d;
+}
+
+.pref-tile.heat-2 {
+	background: #8d6b43;
+}
+
+.pref-tile.heat-3 {
+	background: #99502c;
+}
+
+.pref-tile.heat-4 {
+	background: #662c1f;
+}
+
 .map-panel svg {
 	width: 100%;
 	height: auto;
@@ -354,6 +392,10 @@ button,
 	.ugc-form,
 	.map-panel {
 		grid-template-columns: 1fr;
+	}
+
+	.pref-heatmap {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
 

@@ -307,6 +307,13 @@ const regionLayout = {
   '沖縄': { x: 30, y: 500 },
 }
 
+function heatLevel(alertCount) {
+  if (alertCount >= 27) return 'heat-4'
+  if (alertCount >= 18) return 'heat-3'
+  if (alertCount >= 9) return 'heat-2'
+  return 'heat-1'
+}
+
 function App() {
   const pageSize = 24
   const siteBase = typeof window !== 'undefined' && window.location.pathname.startsWith('/tourism-crowd-parking-alert/') ? '/tourism-crowd-parking-alert' : ''
@@ -401,6 +408,12 @@ function App() {
     prefectureCount: item.prefectures.size,
     prefectures: [...item.prefectures],
   })), [])
+  const prefectureHeatmap = useMemo(() => prefectureSummary
+    .map((item) => ({
+      ...item,
+      heatClass: heatLevel(item.alertCount),
+    }))
+    .sort((left, right) => right.alertCount - left.alertCount || right.averageScore - left.averageScore), [prefectureSummary])
 
   useEffect(() => {
     setPage(1)
@@ -478,21 +491,17 @@ function App() {
         </div>
       </section>
       <section className="seo-section">
-        <h2>地域ヒートマップ</h2>
+        <h2>都道府県ヒートマップ</h2>
         <div className="map-panel">
-          <svg viewBox="0 0 520 560" aria-label="日本地域ヒートマップ">
-            {regionSummary.map((item) => {
-              const point = regionLayout[item.region]
-              const radius = 22 + item.alertCount / 12
-              return (
-                <g key={item.region} transform={`translate(${point.x}, ${point.y})`}>
-                  <circle r={radius} className="map-bubble" />
-                  <text y="4" textAnchor="middle" className="map-bubble-label">{item.region}</text>
-                  <text y={radius + 18} textAnchor="middle" className="map-bubble-meta">{item.alertCount}件 / {item.prefectureCount}都道府県</text>
-                </g>
-              )
-            })}
-          </svg>
+          <div className="pref-heatmap" aria-label="都道府県別ヒートマップ">
+            {prefectureHeatmap.map((item) => (
+              <button type="button" key={item.pref} className={`pref-tile ${item.heatClass}`} onClick={() => setPrefecture(item.pref)}>
+                <strong>{item.pref}</strong>
+                <span>{item.alertCount}件</span>
+                <small>{item.averageScore}</small>
+              </button>
+            ))}
+          </div>
           <div className="map-legend">
             {regionSummary.map((item) => <article key={`${item.region}-legend`}><b>{item.region}</b><p>{item.prefectures.join(' / ')}</p></article>)}
           </div>

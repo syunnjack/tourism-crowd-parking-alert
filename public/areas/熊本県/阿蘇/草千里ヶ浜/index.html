@@ -5,27 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>熊本県 草千里ヶ浜 の混雑・駐車場通知 | tourismparking.jp</title>
     <meta name="description" content="熊本県 草千里ヶ浜 周辺の混雑、駐車場空き、周辺飲食、チケット通知をまとめた個別ページです。" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"熊本県 草千里ヶ浜 の混雑・駐車場通知","url":"https://tourismparking.jp/areas/熊本県/阿蘇/草千里ヶ浜/","description":"熊本県 草千里ヶ浜 周辺の混雑、駐車場、飲食、チケット通知をまとめた個別ページです。","isPartOf":"https://tourismparking.jp/"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Tourism Crowd Parking Alert","item":"https://tourismparking.jp/"},{"@type":"ListItem","position":2,"name":"熊本県","item":"https://tourismparking.jp/areas/熊本県/"},{"@type":"ListItem","position":3,"name":"阿蘇","item":"https://tourismparking.jp/areas/熊本県/阿蘇/"},{"@type":"ListItem","position":4,"name":"草千里ヶ浜","item":"https://tourismparking.jp/areas/熊本県/阿蘇/草千里ヶ浜/"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"草千里ヶ浜 の混雑通知は何分単位で更新されますか？","acceptedAnswer":{"@type":"Answer","text":"草千里ヶ浜 周辺は公開情報と現地投稿をもとに、最短15分単位で再計算する前提の通知設計です。"}},{"@type":"Question","name":"草千里ヶ浜 の駐車場通知は何が分かりますか？","acceptedAnswer":{"@type":"Answer","text":"草千里駐車場 を中心に、推定待機時間、空き台数目安、周辺導線の変化を一覧で確認できます。"}},{"@type":"Question","name":"草千里ヶ浜 ページからどう収益化しますか？","acceptedAnswer":{"@type":"Answer","text":"通知接点から観光予約、駐車場送客、飲食送客、チケット送客、スポンサー掲載へつなげる構成です。"}}]}</script>
     <style>
       :root { color: #1f2320; background: #f4f1ea; }
       * { box-sizing: border-box; }
       body { margin: 0; font-family: Inter, "Yu Gothic", Meiryo, sans-serif; background: #f4f1ea; color: #1f2320; }
       main { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 52px; }
-      .hero, .alert-card, .summary { border: 1px solid rgba(31, 35, 32, .13); border-radius: 10px; background: #fff; box-shadow: 0 18px 44px rgba(42, 36, 28, .08); }
+      .hero, .alert-card, .summary, .section-box { border: 1px solid rgba(31, 35, 32, .13); border-radius: 10px; background: #fff; box-shadow: 0 18px 44px rgba(42, 36, 28, .08); }
       .hero { padding: 24px; margin-bottom: 20px; }
       .eyebrow { margin: 0; color: #79502c; font-size: 13px; font-weight: 800; text-transform: uppercase; }
       h1 { margin: 8px 0 14px; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; }
+      h2, h3 { margin-top: 0; }
       p, li { line-height: 1.75; color: #5c5a52; }
       .summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 18px; margin-bottom: 18px; }
       .summary article { padding: 8px; }
       .summary strong { display: block; font-size: 28px; color: #1f2320; }
       .alert-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
       .alert-card { padding: 18px; }
+      .section-box { padding: 18px; margin-top: 18px; }
       .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #716b61; font-size: 13px; }
       .card-top strong { display: grid; place-items: center; min-width: 46px; height: 46px; border-radius: 50%; background: #1f2320; color: #fff; }
       .meta { border-left: 4px solid #79502c; padding-left: 10px; }
       a { color: #1f2320; }
       .home-link { display: inline-flex; margin-top: 12px; font-weight: 700; }
-      @media (max-width: 860px) { .summary, .alert-grid { grid-template-columns: 1fr; } }
+      .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
+      .related-link span { color: #716b61; font-size: 13px; }
+      .empty-note { margin: 0; }
+      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -42,6 +53,36 @@
         <article><span>最高注目度</span><strong>89</strong></article>
         <article><span>最短待機</span><strong>8分</strong></article>
         <article><span>最大空き台数</span><strong>67台</strong></article>
+      </section>
+      <section class="section-box">
+        <h2>同じ都道府県の関連エリア</h2>
+        <div class="related-grid">
+        <a class="related-link" href="https://tourismparking.jp/areas/%E7%86%8A%E6%9C%AC%E7%9C%8C/%E7%86%8A%E6%9C%AC/%E7%86%8A%E6%9C%AC%E5%9F%8E/">
+          <strong>熊本県 熊本城</strong>
+          <span>熊本 / 熊本城・市役所前駅</span>
+        </a>
+      </div>
+      </section>
+      <section class="section-box">
+        <h2>九州エリアの関連スポット</h2>
+        <div class="related-grid">
+        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E7%A6%8F%E5%B2%A1/%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE/">
+          <strong>福岡県 太宰府天満宮</strong>
+          <span>福岡 / 太宰府駅</span>
+        </a>
+        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E5%8C%97%E4%B9%9D%E5%B7%9E/%E9%96%80%E5%8F%B8%E6%B8%AF%E3%83%AC%E3%83%88%E3%83%AD/">
+          <strong>福岡県 門司港レトロ</strong>
+          <span>北九州 / 門司港駅</span>
+        </a>
+        <a class="related-link" href="https://tourismparking.jp/areas/%E4%BD%90%E8%B3%80%E7%9C%8C/%E4%BD%90%E8%B3%80/%E5%90%89%E9%87%8E%E3%83%B6%E9%87%8C%E6%AD%B4%E5%8F%B2%E5%85%AC%E5%9C%92/">
+          <strong>佐賀県 吉野ヶ里歴史公園</strong>
+          <span>佐賀 / 吉野ヶ里公園駅</span>
+        </a>
+        <a class="related-link" href="https://tourismparking.jp/areas/%E9%95%B7%E5%B4%8E%E7%9C%8C/%E9%95%B7%E5%B4%8E/%E3%82%B0%E3%83%A9%E3%83%90%E3%83%BC%E5%9C%92/">
+          <strong>長崎県 グラバー園</strong>
+          <span>長崎 / 大浦天主堂駅</span>
+        </a>
+      </div>
       </section>
       <section class="alert-grid">
     <article class="alert-card">
@@ -161,6 +202,23 @@
       </ul>
       <p class="meta">通知: LINE / メール / Slack / 収益導線: 地域広告</p>
     </article>
+      </section>
+      <section class="section-box">
+        <h2>FAQ</h2>
+        <div class="faq-grid">
+        <article>
+          <h3>草千里ヶ浜 の混雑通知は何分単位で更新されますか？</h3>
+          <p>草千里ヶ浜 周辺は公開情報と現地投稿をもとに、最短15分単位で再計算する前提の通知設計です。</p>
+        </article>
+        <article>
+          <h3>草千里ヶ浜 の駐車場通知は何が分かりますか？</h3>
+          <p>草千里駐車場 を中心に、推定待機時間、空き台数目安、周辺導線の変化を一覧で確認できます。</p>
+        </article>
+        <article>
+          <h3>草千里ヶ浜 ページからどう収益化しますか？</h3>
+          <p>通知接点から観光予約、駐車場送客、飲食送客、チケット送客、スポンサー掲載へつなげる構成です。</p>
+        </article>
+        </div>
       </section>
     </main>
   </body>
