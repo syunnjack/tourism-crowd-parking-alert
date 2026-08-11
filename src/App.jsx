@@ -461,7 +461,7 @@ function App() {
           <p className="lead">観光前に、混雑状況や駐車場の空き、近くの飲食店やチケット情報をまとめて確認できるサービスです。</p>
         </div>
         <aside className="hero-panel">
-          <span>tourismparking.jp / tourism-crowd-parking-alert</span>
+          <span>全国の観光地情報をまとめてチェック</span>
           <strong>必要な情報を出発前にまとめて受け取り、次の行動を迷わず選べる。</strong>
           <p>LINE、X、メール、Slackを入口に、最新情報や口コミを集めながら、予約や周辺スポット探しまでスムーズにつなげます。</p>
         </aside>
@@ -482,10 +482,10 @@ function App() {
         <span>{query === '' ? 'キーワード未指定' : `キーワード: ${query}`}</span>
       </section>
       <section className="metrics">
-        <article><span>Alert seeds</span><strong>{alerts.length}</strong></article>
-        <article><span>Channels</span><strong>{channels.length}</strong></article>
-        <article><span>Saved</span><strong>{saved.length}</strong></article>
-        <article><span>UGC</span><strong>{posts.length}</strong></article>
+        <article><span>掲載中の情報</span><strong>{alerts.length}</strong></article>
+        <article><span>対応通知</span><strong>{channels.length}</strong></article>
+        <article><span>保存件数</span><strong>{saved.length}</strong></article>
+        <article><span>口コミ投稿</span><strong>{posts.length}</strong></article>
       </section>
       <section className="split split-rankings">
         <div className="panel">
@@ -549,7 +549,7 @@ function App() {
             <div className="tag-row">{alert.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
             <div className="channel-row">{alert.channels.map((channel) => <span key={channel}>{channel}</span>)}</div>
             <p className="revenue">おすすめ情報: {alert.revenue}</p>
-            <button type="button" onClick={() => toggleSave(alert.id)}>{saved.includes(alert.id) ? '保存済み' : 'あとで見る'}</button>
+            <button type="button" onClick={() => toggleSave(alert.id)}>{saved.includes(alert.id) ? '保存済み' : '保存する'}</button>
           </article>
         ))}
       </section>
@@ -586,8 +586,8 @@ function App() {
               <p>確認できるカテゴリ: {route.categories.join(' / ')} / 情報件数: {route.alertCount}</p>
               <p>最寄駅: {route.station} / 駐車場: {route.parking} / 最大注目度: {route.topScore}</p>
               <div className="route-actions">
-                <button type="button" onClick={() => applyAreaPreset(route)}>一覧で絞り込む</button>
-                <a className="route-link" href={encodeURI(`${siteBase}${route.url}`)}>個別ページを見る</a>
+                <button type="button" onClick={() => applyAreaPreset(route)}>この条件で見る</button>
+                <a className="route-link" href={encodeURI(`${siteBase}${route.url}`)}>詳細を見る</a>
               </div>
             </article>
           ))}
@@ -595,7 +595,7 @@ function App() {
         <div className="seo-grid">
           <article><b>地域ページ</b><p>地域名、駅名、施設名ごとに、出発前に知りたい情報を探しやすくしています。</p></article>
           <article><b>条件ページ</b><p>空き、値下げ、在庫、混雑、期限など、その場で判断したい条件から探せます。</p></article>
-          <article><b>施設向け案内</b><p>情報更新や通知連携を相談したい施設向けの案内も用意しています。</p></article>
+          <article><b>施設向け情報</b><p>情報更新や通知連携を相談したい施設向けの案内も用意しています。</p></article>
         </div>
       </section>
       <section className="faq-section">
