@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tourism-crowd-parking-alert.vercel.app/sitemap.xml
+Sitemap: https://tourismparking.jp/sitemap.xml

@@ -317,10 +317,11 @@ function heatLevel(alertCount) {
 function App() {
   const pageSize = 24
   const siteBase = typeof window !== 'undefined' && window.location.pathname.startsWith('/tourism-crowd-parking-alert/') ? '/tourism-crowd-parking-alert' : ''
-  const [query, setQuery] = useState('名古屋')
-  const [category, setCategory] = useState('すべて')
-  const [prefecture, setPrefecture] = useState('すべて')
-  const [sortBy, setSortBy] = useState('score')
+  const initialParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
+  const [query, setQuery] = useState(initialParams?.get('q') ?? '名古屋')
+  const [category, setCategory] = useState(initialParams?.get('category') ?? 'すべて')
+  const [prefecture, setPrefecture] = useState(initialParams?.get('pref') ?? 'すべて')
+  const [sortBy, setSortBy] = useState(initialParams?.get('sort') ?? 'score')
   const [page, setPage] = useState(1)
   const [saved, setSaved] = useState(() => readArray(saveKey))
   const [posts, setPosts] = useState(() => readArray(postKey))
@@ -418,6 +419,17 @@ function App() {
   useEffect(() => {
     setPage(1)
   }, [query, prefecture, category, sortBy])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams()
+    if (query !== '') params.set('q', query)
+    if (prefecture !== 'すべて') params.set('pref', prefecture)
+    if (category !== 'すべて') params.set('category', category)
+    if (sortBy !== 'score') params.set('sort', sortBy)
+    const next = `${siteBase || ''}/${params.toString() === '' ? '' : `?${params.toString()}`}`
+    window.history.replaceState({}, '', next)
+  }, [query, prefecture, category, sortBy, siteBase])
 
   function applyAreaPreset(route) {
     setPrefecture(route.pref)

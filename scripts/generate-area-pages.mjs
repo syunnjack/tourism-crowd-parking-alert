@@ -5,7 +5,11 @@ const root = resolve(process.cwd())
 const appFile = resolve(root, 'src', 'App.jsx')
 const publicDir = resolve(root, 'public')
 const areasDir = resolve(publicDir, 'areas')
+const sitemapsDir = resolve(publicDir, 'sitemaps')
 const sitemapFile = resolve(publicDir, 'sitemap.xml')
+const coreSitemapFile = resolve(sitemapsDir, 'core.xml')
+const areasSitemapFile = resolve(sitemapsDir, 'areas.xml')
+const robotsFile = resolve(publicDir, 'robots.txt')
 
 const appSource = readFileSync(appFile, 'utf8')
 const locationMatch = appSource.match(/const locationSeeds = \[(.*?)\]\s*const categoryBlueprints = \[/s)
@@ -130,6 +134,8 @@ const renderRanking = (title, items, formatter) => `
   </section>`
 
 rmSync(areasDir, { recursive: true, force: true })
+rmSync(sitemapsDir, { recursive: true, force: true })
+mkdirSync(sitemapsDir, { recursive: true })
 
 for (const area of areaPages) {
   const outputDir = resolve(publicDir, '.' + area.path)
@@ -222,6 +228,9 @@ for (const area of areaPages) {
           <p>${escapeHtml(item.answer)}</p>
         </article>`).join('')
 
+  const saveIds = area.alerts.map((item) => item.id)
+  const appUrl = `https://tourismparking.jp/?q=${encodeURIComponent(area.spot)}&pref=${encodeURIComponent(area.pref)}`
+
   const html = `<!doctype html>
 <html lang="ja">
   <head>
@@ -239,6 +248,7 @@ for (const area of areaPages) {
       main { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 52px; }
       .hero, .alert-card, .summary, .section-box { border: 1px solid rgba(31, 35, 32, .13); border-radius: 10px; background: #fff; box-shadow: 0 18px 44px rgba(42, 36, 28, .08); }
       .hero { padding: 24px; margin-bottom: 20px; }
+      .cta-box { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
       .eyebrow { margin: 0; color: #79502c; font-size: 13px; font-weight: 800; text-transform: uppercase; }
       h1 { margin: 8px 0 14px; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; }
       h2, h3 { margin-top: 0; }
@@ -254,6 +264,7 @@ for (const area of areaPages) {
       .meta { border-left: 4px solid #79502c; padding-left: 10px; }
       a { color: #1f2320; }
       .home-link { display: inline-flex; margin-top: 12px; font-weight: 700; }
+      .cta-link, .save-button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 14px; border-radius: 8px; background: #1f2320; color: #fff; text-decoration: none; border: 0; cursor: pointer; font: inherit; font-weight: 800; }
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
@@ -270,6 +281,10 @@ for (const area of areaPages) {
         <h1>${escapeHtml(area.pref)} ${escapeHtml(area.spot)}</h1>
         <p>${escapeHtml(area.area)} 周辺の混雑、駐車場、飲食、チケット通知をまとめています。現地導線の比較、待機時間の短い枠、周辺送客の判断材料として使えます。</p>
         <p>最寄駅: ${escapeHtml(area.station)} / 駐車場: ${escapeHtml(area.parking)}</p>
+        <div class="cta-box">
+          <a class="cta-link" href="${appUrl}">この条件で一覧を開く</a>
+          <button class="save-button" type="button" data-save-ids='${JSON.stringify(saveIds)}'>このエリアを保存する</button>
+        </div>
         <a class="home-link" href="../../../../">一覧へ戻る</a>
       </section>
       <section class="summary">
@@ -296,18 +311,47 @@ for (const area of areaPages) {
         </div>
       </section>
     </main>
+    <script>
+      const button = document.querySelector('[data-save-ids]');
+      if (button) {
+        button.addEventListener('click', () => {
+          const key = 'tourism-crowd-parking-alert.saved';
+          const ids = JSON.parse(button.dataset.saveIds || '[]');
+          const current = JSON.parse(localStorage.getItem(key) || '[]');
+          const next = [...new Set([...current, ...ids])];
+          localStorage.setItem(key, JSON.stringify(next));
+          button.textContent = '保存済み';
+          button.disabled = true;
+        });
+      }
+    </script>
   </body>
 </html>`
 
   writeFileSync(resolve(outputDir, 'index.html'), html)
 }
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+const coreSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://tourismparking.jp/</loc><priority>1.0</priority></url>
+</urlset>
+`
+
+const areasSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${areaPages.map((area) => `  <url><loc>https://tourismparking.jp${encodeURI(area.path)}</loc><priority>0.8</priority></url>`).join('\n')}
 </urlset>
 `
 
-writeFileSync(sitemapFile, sitemap)
+const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>https://tourismparking.jp/sitemaps/core.xml</loc></sitemap>
+  <sitemap><loc>https://tourismparking.jp/sitemaps/areas.xml</loc></sitemap>
+</sitemapindex>
+`
+
+writeFileSync(coreSitemapFile, coreSitemap)
+writeFileSync(areasSitemapFile, areasSitemap)
+writeFileSync(sitemapFile, sitemapIndex)
+writeFileSync(robotsFile, 'User-agent: *\nAllow: /\n\nSitemap: https://tourismparking.jp/sitemap.xml\n')
 console.log(`Generated ${areaPages.length} area pages and updated sitemap.`)
