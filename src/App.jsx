@@ -456,14 +456,14 @@ function App() {
     <main className="app-shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">観光スポット混雑・駐車場空き通知</p>
+          <p className="eyebrow">観光前に役立つおでかけ通知</p>
           <h1>Tourism Crowd Parking Alert</h1>
-          <p className="lead">観光地の混雑、駐車場空き、周辺飲食、チケットを通知し、観光予約、駐車場、飲食へ送客する。</p>
+          <p className="lead">観光前に、混雑状況や駐車場の空き、近くの飲食店やチケット情報をまとめて確認できるサービスです。</p>
         </div>
         <aside className="hero-panel">
           <span>tourismparking.jp / tourism-crowd-parking-alert</span>
-          <strong>通知の瞬間に、予約・掲載・クーポン・有料導線へつなげる。</strong>
-          <p>LINE、X、メール、Slackを入口に、UGCで鮮度を作りながら収益導線を太くします。</p>
+          <strong>必要な情報を出発前にまとめて受け取り、次の行動を迷わず選べる。</strong>
+          <p>LINE、X、メール、Slackを入口に、最新情報や口コミを集めながら、予約や周辺スポット探しまでスムーズにつなげます。</p>
         </aside>
       </section>
       <section className="controls controls-search" aria-label="検索条件">
