@@ -239,12 +239,77 @@ function buildAreaRoute(location, index) {
     spot: location.spot,
     station: location.station,
     parking: location.parking,
-    url: `/areas/${location.pref}/${location.area}/${location.spot}`,
+    url: `/areas/${location.pref}/${location.area}/${location.spot}/`,
   }
+}
+
+function regionOfPrefecture(pref) {
+  const regionMap = {
+    '北海道': '北海道',
+    '青森県': '東北',
+    '岩手県': '東北',
+    '宮城県': '東北',
+    '秋田県': '東北',
+    '山形県': '東北',
+    '福島県': '東北',
+    '茨城県': '関東',
+    '栃木県': '関東',
+    '群馬県': '関東',
+    '埼玉県': '関東',
+    '千葉県': '関東',
+    '東京都': '関東',
+    '神奈川県': '関東',
+    '山梨県': '中部',
+    '長野県': '中部',
+    '富山県': '中部',
+    '石川県': '中部',
+    '福井県': '中部',
+    '岐阜県': '中部',
+    '静岡県': '中部',
+    '愛知県': '中部',
+    '三重県': '中部',
+    '滋賀県': '近畿',
+    '京都府': '近畿',
+    '大阪府': '近畿',
+    '兵庫県': '近畿',
+    '奈良県': '近畿',
+    '和歌山県': '近畿',
+    '岡山県': '中国',
+    '広島県': '中国',
+    '山口県': '中国',
+    '鳥取県': '中国',
+    '島根県': '中国',
+    '徳島県': '四国',
+    '香川県': '四国',
+    '愛媛県': '四国',
+    '高知県': '四国',
+    '福岡県': '九州',
+    '佐賀県': '九州',
+    '長崎県': '九州',
+    '熊本県': '九州',
+    '大分県': '九州',
+    '宮崎県': '九州',
+    '鹿児島県': '九州',
+    '沖縄県': '沖縄',
+  }
+  return regionMap[pref] ?? 'その他'
+}
+
+const regionLayout = {
+  '北海道': { x: 420, y: 50 },
+  '東北': { x: 360, y: 120 },
+  '関東': { x: 350, y: 210 },
+  '中部': { x: 270, y: 220 },
+  '近畿': { x: 210, y: 280 },
+  '中国': { x: 130, y: 300 },
+  '四国': { x: 180, y: 360 },
+  '九州': { x: 90, y: 410 },
+  '沖縄': { x: 30, y: 500 },
 }
 
 function App() {
   const pageSize = 24
+  const siteBase = typeof window !== 'undefined' && window.location.pathname.startsWith('/tourism-crowd-parking-alert/') ? '/tourism-crowd-parking-alert' : ''
   const [query, setQuery] = useState('名古屋')
   const [category, setCategory] = useState('すべて')
   const [prefecture, setPrefecture] = useState('すべて')
@@ -318,6 +383,24 @@ function App() {
       categories: [...new Set(routeAlerts.map((item) => item.category))].slice(0, 3),
     }
   }), [])
+  const rankings = useMemo(() => ({
+    score: [...alerts].sort((left, right) => right.score - left.score).slice(0, 5),
+    wait: [...alerts].sort((left, right) => left.waitMin - right.waitMin || right.score - left.score).slice(0, 5),
+    vacancy: [...alerts].sort((left, right) => right.parkingVacancy - left.parkingVacancy || right.score - left.score).slice(0, 5),
+  }), [])
+  const regionSummary = useMemo(() => Object.values(alerts.reduce((accumulator, item) => {
+    const region = regionOfPrefecture(item.pref)
+    const bucket = accumulator[region] ?? { region, alertCount: 0, maxScore: 0, prefectures: new Set() }
+    bucket.alertCount += 1
+    bucket.maxScore = Math.max(bucket.maxScore, item.score)
+    bucket.prefectures.add(item.pref)
+    accumulator[region] = bucket
+    return accumulator
+  }, {})).map((item) => ({
+    ...item,
+    prefectureCount: item.prefectures.size,
+    prefectures: [...item.prefectures],
+  })), [])
 
   useEffect(() => {
     setPage(1)
@@ -378,6 +461,42 @@ function App() {
         <article><span>Channels</span><strong>{channels.length}</strong></article>
         <article><span>Saved</span><strong>{saved.length}</strong></article>
         <article><span>UGC</span><strong>{posts.length}</strong></article>
+      </section>
+      <section className="split split-rankings">
+        <div className="panel">
+          <h2>注目度ランキング</h2>
+          <div className="ranking-list">
+            {rankings.score.map((item) => <article key={item.id}><b>{item.title}</b><p>{item.area} / 注目度 {item.score}</p></article>)}
+          </div>
+        </div>
+        <div className="panel">
+          <h2>空き・待機ランキング</h2>
+          <div className="ranking-list">
+            {rankings.wait.map((item) => <article key={item.id}><b>{item.title}</b><p>待機 {item.waitMin}分 / 空き {item.parkingVacancy}台</p></article>)}
+            {rankings.vacancy.slice(0, 2).map((item) => <article key={`${item.id}-vacancy`}><b>{item.title}</b><p>空き台数多め {item.parkingVacancy}台 / 注目度 {item.score}</p></article>)}
+          </div>
+        </div>
+      </section>
+      <section className="seo-section">
+        <h2>地域ヒートマップ</h2>
+        <div className="map-panel">
+          <svg viewBox="0 0 520 560" aria-label="日本地域ヒートマップ">
+            {regionSummary.map((item) => {
+              const point = regionLayout[item.region]
+              const radius = 22 + item.alertCount / 12
+              return (
+                <g key={item.region} transform={`translate(${point.x}, ${point.y})`}>
+                  <circle r={radius} className="map-bubble" />
+                  <text y="4" textAnchor="middle" className="map-bubble-label">{item.region}</text>
+                  <text y={radius + 18} textAnchor="middle" className="map-bubble-meta">{item.alertCount}件 / {item.prefectureCount}都道府県</text>
+                </g>
+              )
+            })}
+          </svg>
+          <div className="map-legend">
+            {regionSummary.map((item) => <article key={`${item.region}-legend`}><b>{item.region}</b><p>{item.prefectures.join(' / ')}</p></article>)}
+          </div>
+        </div>
       </section>
       <section className="seo-section">
         <h2>都道府県別集計</h2>
@@ -445,7 +564,10 @@ function App() {
               <p>想定URL: {route.url}</p>
               <p>通知カテゴリ: {route.categories.join(' / ')} / alert件数: {route.alertCount}</p>
               <p>最寄駅: {route.station} / 駐車場: {route.parking} / 最大注目度: {route.topScore}</p>
-              <button type="button" onClick={() => applyAreaPreset(route)}>このエリアを開く</button>
+              <div className="route-actions">
+                <button type="button" onClick={() => applyAreaPreset(route)}>一覧で絞り込む</button>
+                <a className="route-link" href={encodeURI(`${siteBase}${route.url}`)}>個別ページを見る</a>
+              </div>
             </article>
           ))}
         </div>
