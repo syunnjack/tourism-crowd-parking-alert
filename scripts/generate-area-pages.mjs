@@ -82,13 +82,14 @@ const alerts = locationSeeds.flatMap((location, locationIndex) => (
       id: `tourism-crowd-parking-alert-${locationIndex + 1}-${blueprint.key}`,
       pref: location.pref,
       areaName: location.area,
+      area: `${location.pref} ${location.area}`,
       spot: location.spot,
       station: location.station,
       parking: location.parking,
       title: `${location.spot} ${blueprint.label}`,
       category: blueprint.category,
       score,
-      summary: `${location.spot}（最寄: ${location.station}）周辺の${blueprint.category}通知。${location.parking}の空きと、観光導線の変化を条件一致で通知します。`,
+      summary: `${location.spot}（最寄: ${location.station}）周辺の${blueprint.category}情報です。${location.parking}の空きや、立ち寄りやすい周辺情報の変化を条件に合わせて確認できます。`,
       channels: blueprint.channels,
       revenue: blueprint.revenue,
       source: blueprint.source,
@@ -166,11 +167,11 @@ for (const area of areaPages) {
     },
     {
       question: `${area.spot} の駐車場通知は何が分かりますか？`,
-      answer: `${area.parking} を中心に、推定待機時間、空き台数目安、周辺導線の変化を一覧で確認できます。`,
+      answer: `${area.parking} を中心に、推定待機時間、空き台数目安、周辺スポット情報の変化を一覧で確認できます。`,
     },
     {
-      question: `${area.spot} ページからどう収益化しますか？`,
-      answer: `通知接点から観光予約、駐車場送客、飲食送客、チケット送客、スポンサー掲載へつなげる構成です。`,
+      question: `${area.spot} ページでは何が見られますか？`,
+      answer: `混雑状況、駐車場の空き、近くで立ち寄れる飲食店やチケット情報をまとめて確認できます。`,
     },
   ]
 
@@ -201,9 +202,9 @@ for (const area of areaPages) {
   const collectionJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${area.pref} ${area.spot} の混雑・駐車場通知`,
+    name: `${area.pref} ${area.spot} の混雑・駐車場情報`,
     url: `https://tourismparking.jp${area.path}`,
-    description: `${area.pref} ${area.spot} 周辺の混雑、駐車場、飲食、チケット通知をまとめた個別ページです。`,
+    description: `${area.pref} ${area.spot} 周辺の混雑、駐車場、飲食、チケット情報をまとめた個別ページです。`,
     isPartOf: 'https://tourismparking.jp/',
   }
 
@@ -219,7 +220,7 @@ for (const area of areaPages) {
         <li>空き台数目安: ${alert.parkingVacancy}台</li>
         <li>参照: ${escapeHtml(alert.source)}</li>
       </ul>
-      <p class="meta">通知: ${escapeHtml(alert.channels.join(' / '))} / 収益導線: ${escapeHtml(alert.revenue)}</p>
+      <p class="meta">通知: ${escapeHtml(alert.channels.join(' / '))} / おすすめ情報: ${escapeHtml(alert.revenue)}</p>
     </article>`).join('')
 
   const faqHtml = faqItems.map((item) => `
@@ -236,8 +237,8 @@ for (const area of areaPages) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${escapeHtml(area.pref)} ${escapeHtml(area.spot)} の混雑・駐車場通知 | tourismparking.jp</title>
-    <meta name="description" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} 周辺の混雑、駐車場空き、周辺飲食、チケット通知をまとめた個別ページです。" />
+    <title>${escapeHtml(area.pref)} ${escapeHtml(area.spot)} の混雑・駐車場情報 | tourismparking.jp</title>
+    <meta name="description" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} 周辺の混雑、駐車場空き、周辺飲食、チケット情報をまとめた個別ページです。" />
     <script type="application/ld+json">${JSON.stringify(collectionJsonLd)}</script>
     <script type="application/ld+json">${JSON.stringify(breadcrumbJsonLd)}</script>
     <script type="application/ld+json">${JSON.stringify(faqJsonLd)}</script>
@@ -277,18 +278,18 @@ for (const area of areaPages) {
   <body>
     <main>
       <section class="hero">
-        <p class="eyebrow">個別エリア通知ページ</p>
+        <p class="eyebrow">個別エリア情報ページ</p>
         <h1>${escapeHtml(area.pref)} ${escapeHtml(area.spot)}</h1>
-        <p>${escapeHtml(area.area)} 周辺の混雑、駐車場、飲食、チケット通知をまとめています。現地導線の比較、待機時間の短い枠、周辺送客の判断材料として使えます。</p>
+        <p>${escapeHtml(area.area)} 周辺の混雑、駐車場、飲食、チケット情報をまとめています。出発前の比較や、待機時間の短いスポット探しに役立ちます。</p>
         <p>最寄駅: ${escapeHtml(area.station)} / 駐車場: ${escapeHtml(area.parking)}</p>
         <div class="cta-box">
-          <a class="cta-link" href="${appUrl}">この条件で一覧を開く</a>
+          <a class="cta-link" href="${appUrl}">この条件で見る</a>
           <button class="save-button" type="button" data-save-ids='${JSON.stringify(saveIds)}'>このエリアを保存する</button>
         </div>
         <a class="home-link" href="../../../../">一覧へ戻る</a>
       </section>
       <section class="summary">
-        <article><span>Alert</span><strong>${area.alerts.length}</strong></article>
+        <article><span>掲載中の情報</span><strong>${area.alerts.length}</strong></article>
         <article><span>最高注目度</span><strong>${Math.max(...area.alerts.map((item) => item.score))}</strong></article>
         <article><span>最短待機</span><strong>${Math.min(...area.alerts.map((item) => item.waitMin))}分</strong></article>
         <article><span>最大空き台数</span><strong>${Math.max(...area.alerts.map((item) => item.parkingVacancy))}台</strong></article>
