@@ -33,10 +33,10 @@ Other candidates:
 
 ## Revenue Paths
 
-- 駐車場送客
+- 駐車場情報
 - 観光予約
-- 飲食送客
-- チケット affiliate
+- 周辺グルメ
+- チケット情報
 - 地域広告
 
 ## Commands

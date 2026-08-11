@@ -3,5 +3,5 @@
 観光前に、混雑状況や駐車場の空き、近くの飲食店やチケット情報をまとめて確認できるサービスです。
 
 Notification channels: LINE, X, email, Slack
-Revenue: 駐車場送客, 観光予約, 飲食送客, チケット affiliate, 地域広告
+Topics: 駐車場情報, 観光予約, 周辺グルメ, チケット情報, 地域のお知らせ
 Primary categories: 混雑, 駐車場, 観光, 飲食, チケット

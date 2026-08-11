@@ -102,17 +102,17 @@ const categoryBlueprints = [
     window: '09:30-11:30',
     baseScore: 92,
     channels: ['LINE', 'X', 'Slack'],
-    revenue: '駐車場送客',
+    revenue: '駐車場情報',
     source: '施設案内 + 駐車場案内板投稿',
   },
   {
     key: 'around-spot',
     category: '観光',
-    label: '周辺導線提案',
+    label: '周辺スポット案内',
     window: '15:00-17:00',
     baseScore: 89,
     channels: ['LINE', 'メール'],
-    revenue: '飲食送客',
+    revenue: '周辺グルメ',
     source: '商店会情報 + ユーザー投稿',
   },
   {
@@ -122,7 +122,7 @@ const categoryBlueprints = [
     window: '12:00-14:00',
     baseScore: 88,
     channels: ['LINE', 'X', 'メール'],
-    revenue: '飲食送客',
+    revenue: '周辺グルメ',
     source: '飲食店公開情報 + 口コミ投稿',
   },
   {
@@ -132,7 +132,7 @@ const categoryBlueprints = [
     window: '10:00-16:00',
     baseScore: 87,
     channels: ['LINE', 'メール'],
-    revenue: 'チケット affiliate',
+    revenue: 'チケット情報',
     source: 'チケット販売情報 + 施設案内',
   },
   {
@@ -194,7 +194,7 @@ const alerts = locationSeeds.flatMap((location, locationIndex) => (
       area: `${location.pref} ${location.area}`,
       category: blueprint.category,
       score,
-      summary: `${location.spot}（最寄: ${location.station}）周辺の${blueprint.category}通知。${location.parking}の空きと、観光導線の変化を条件一致で通知します。`,
+      summary: `${location.spot}（最寄: ${location.station}）周辺の${blueprint.category}情報です。${location.parking}の空きや、立ち寄りやすい周辺情報の変化を条件に合わせて確認できます。`,
       channels: blueprint.channels,
       tags: [location.pref, location.area, location.spot, blueprint.category, '通知', '観光'],
       revenue: blueprint.revenue,
@@ -209,10 +209,10 @@ const alerts = locationSeeds.flatMap((location, locationIndex) => (
   })
 ))
 const revenuePlans = [
-  "駐車場送客",
+  "駐車場情報",
   "観光予約",
-  "飲食送客",
-  "チケット affiliate",
+  "周辺グルメ",
+  "チケット情報",
   "地域広告"
 ]
 const channels = [
@@ -222,9 +222,9 @@ const channels = [
   "Slack"
 ]
 const faqs = [
-  ['通知からどう収益化しますか？', '無料通知で接点を作り、条件一致時に予約、掲載、クーポン、有料通知、スポンサー枠へ誘導します。'],
+  ['通知を見ると何が分かりますか？', '混雑状況、駐車場の空き、近くで立ち寄れる飲食店やチケット情報を、条件に合わせてまとめて確認できます。'],
   ['LINE・X・メール・Slackの使い分けは？', 'LINEは個人の即時通知、Xは拡散、メールは週次まとめ、Slackは店舗や法人運用向けです。'],
-  ['SEO/AIO/LLMOの狙いは？', '地域名、カテゴリ、条件、通知、口コミ、FAQを組み合わせたロングテールページを作ります。'],
+  ['エリア別ページでは何が見られますか？', '地域ごとの混雑、駐車場、周辺スポット情報をまとめて見比べやすくしています。'],
 ]
 
 function readArray(key) {
@@ -548,42 +548,42 @@ function App() {
             <p>データ更新: {alert.updatedAt} / 参照: {alert.source}</p>
             <div className="tag-row">{alert.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
             <div className="channel-row">{alert.channels.map((channel) => <span key={channel}>{channel}</span>)}</div>
-            <p className="revenue">収益導線: {alert.revenue}</p>
-            <button type="button" onClick={() => toggleSave(alert.id)}>{saved.includes(alert.id) ? '保存済み' : '通知導線に保存'}</button>
+            <p className="revenue">おすすめ情報: {alert.revenue}</p>
+            <button type="button" onClick={() => toggleSave(alert.id)}>{saved.includes(alert.id) ? '保存済み' : 'あとで見る'}</button>
           </article>
         ))}
       </section>
       <section className="split">
         <div className="panel">
-          <h2>技術選定</h2>
-          <article><b>Frontend</b><p>Vite + React 19。静的MVPとして軽く、GitHub Pagesへ展開しやすい構成です。</p></article>
-          <article><b>通知連携</b><p>初期はUI設計、次段階でLINE Messaging API、X API、SendGrid/Mailgun、Slack Incoming Webhooksを接続します。</p></article>
-          <article><b>Data</b><p>MVPは静的seed + localStorage。運用時はSupabaseまたはCloudflare D1へ移行します。</p></article>
-          <article><b>収益ルート</b><p>{revenuePlans.join(' / ')}</p></article>
+          <h2>このサービスで分かること</h2>
+          <article><b>今の状況</b><p>観光地の混雑や駐車場の空き状況を、出発前にまとめて確認できます。</p></article>
+          <article><b>移動の判断</b><p>LINE、X、メール、Slackで情報を受け取り、立ち寄る場所や時間帯を決めやすくします。</p></article>
+          <article><b>現地で役立つ情報</b><p>周辺の飲食店、チケット、雨天時の代替スポットなどもあわせてチェックできます。</p></article>
+          <article><b>チェックできるテーマ</b><p>{revenuePlans.join(' / ')}</p></article>
         </div>
         <div className="panel">
-          <h2>UGC・通知リクエスト</h2>
-          <p>現地確認、在庫、空席、価格、閉店、口コミ、通知希望条件を集めて、鮮度と検索ページを増やします。</p>
+          <h2>口コミ・通知リクエスト</h2>
+          <p>現地の様子や空き状況、口コミ、知りたい条件を投稿して、ほかの利用者と情報を共有できます。</p>
           <form className="ugc-form" onSubmit={addPost}>
-            <input value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} placeholder="通知リクエスト名" />
+            <input value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} placeholder="投稿タイトル" />
             <input value={form.channel} onChange={(event) => setForm({ ...form, channel: event.target.value })} placeholder="LINE / X / メール / Slack" />
             <input value={form.memo} onChange={(event) => setForm({ ...form, memo: event.target.value })} placeholder="条件・口コミ・現地メモ" />
             <button>投稿</button>
           </form>
           <div className="post-list">
-            {posts.length === 0 && <p className="empty">公開後は通知希望とUGCで鮮度を作ります。</p>}
+            {posts.length === 0 && <p className="empty">まだ投稿はありません。気になる条件や現地の様子を最初に共有できます。</p>}
             {posts.map((post) => <article key={post.id}><b>{post.title}</b><p>{post.memo}</p><small>{post.channel} / {post.date}</small></article>)}
           </div>
         </div>
       </section>
       <section className="seo-section">
-        <h2>SEO / AIO / LLMO 優先導線</h2>
+        <h2>エリア別の便利ページ</h2>
         <div className="seo-grid">
           {areaRoutes.map((route) => (
             <article key={route.id}>
               <b>{route.pref} {route.spot}</b>
               <p>想定URL: {route.url}</p>
-              <p>通知カテゴリ: {route.categories.join(' / ')} / alert件数: {route.alertCount}</p>
+              <p>確認できるカテゴリ: {route.categories.join(' / ')} / 情報件数: {route.alertCount}</p>
               <p>最寄駅: {route.station} / 駐車場: {route.parking} / 最大注目度: {route.topScore}</p>
               <div className="route-actions">
                 <button type="button" onClick={() => applyAreaPreset(route)}>一覧で絞り込む</button>
@@ -593,9 +593,9 @@ function App() {
           ))}
         </div>
         <div className="seo-grid">
-          <article><b>地域ページ</b><p>地域名、駅名、施設名ごとに通知ニーズを拾います。</p></article>
-          <article><b>条件ページ</b><p>空き、値下げ、閉店、在庫、混雑、期限など行動直前の検索を狙います。</p></article>
-          <article><b>法人ページ</b><p>掲載、スポンサー、Slack通知、レポート、SaaS契約へつなげます。</p></article>
+          <article><b>地域ページ</b><p>地域名、駅名、施設名ごとに、出発前に知りたい情報を探しやすくしています。</p></article>
+          <article><b>条件ページ</b><p>空き、値下げ、在庫、混雑、期限など、その場で判断したい条件から探せます。</p></article>
+          <article><b>施設向け案内</b><p>情報更新や通知連携を相談したい施設向けの案内も用意しています。</p></article>
         </div>
       </section>
       <section className="faq-section">
