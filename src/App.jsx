@@ -188,6 +188,8 @@ const alerts = locationSeeds.flatMap((location, locationIndex) => (
 
     return {
       id,
+      pref: location.pref,
+      areaName: location.area,
       title: `${location.spot} ${blueprint.label}`,
       area: `${location.pref} ${location.area}`,
       category: blueprint.category,
@@ -229,38 +231,103 @@ function readArray(key) {
   try { return JSON.parse(localStorage.getItem(key)) ?? [] } catch { return [] }
 }
 
+function buildAreaRoute(location, index) {
+  return {
+    id: `seo-area-${index + 1}`,
+    pref: location.pref,
+    areaName: location.area,
+    spot: location.spot,
+    station: location.station,
+    parking: location.parking,
+    url: `/areas/${location.pref}/${location.area}/${location.spot}`,
+  }
+}
+
 function App() {
   const pageSize = 24
   const [query, setQuery] = useState('名古屋')
   const [category, setCategory] = useState('すべて')
+  const [prefecture, setPrefecture] = useState('すべて')
+  const [sortBy, setSortBy] = useState('score')
   const [page, setPage] = useState(1)
   const [saved, setSaved] = useState(() => readArray(saveKey))
   const [posts, setPosts] = useState(() => readArray(postKey))
   const [form, setForm] = useState({ title: '', channel: 'LINE', memo: '' })
+  const prefectures = ['すべて', ...new Set(alerts.map((item) => item.pref))]
   const categories = ['すべて', ...new Set(alerts.map((item) => item.category))]
 
-  const filtered = useMemo(() => alerts.filter((item) => {
-    const text = [
-      item.title,
-      item.area,
-      item.category,
-      item.summary,
-      item.spot,
-      item.station,
-      item.parking,
-      item.source,
-      item.channels.join(' '),
-      item.tags.join(' '),
-    ].join(' ')
-    return text.includes(query) && (category === 'すべて' || item.category === category)
-  }), [query, category])
+  const filtered = useMemo(() => alerts
+    .filter((item) => {
+      const text = [
+        item.title,
+        item.area,
+        item.areaName,
+        item.pref,
+        item.category,
+        item.summary,
+        item.spot,
+        item.station,
+        item.parking,
+        item.source,
+        item.channels.join(' '),
+        item.tags.join(' '),
+      ].join(' ')
+      return text.includes(query)
+        && (prefecture === 'すべて' || item.pref === prefecture)
+        && (category === 'すべて' || item.category === category)
+    })
+    .sort((left, right) => {
+      if (sortBy === 'wait') return left.waitMin - right.waitMin || right.score - left.score
+      if (sortBy === 'vacancy') return right.parkingVacancy - left.parkingVacancy || right.score - left.score
+      if (sortBy === 'updated') return right.updatedAt.localeCompare(left.updatedAt)
+      return right.score - left.score || left.waitMin - right.waitMin
+    }), [query, prefecture, category, sortBy])
 
   const visibleAlerts = useMemo(() => filtered.slice(0, page * pageSize), [filtered, page])
   const hasMore = visibleAlerts.length < filtered.length
+  const prefectureSummary = useMemo(() => Object.values(alerts.reduce((accumulator, item) => {
+    const bucket = accumulator[item.pref] ?? {
+      pref: item.pref,
+      alertCount: 0,
+      totalScore: 0,
+      totalWait: 0,
+      topSpot: item.spot,
+      maxScore: item.score,
+    }
+    bucket.alertCount += 1
+    bucket.totalScore += item.score
+    bucket.totalWait += item.waitMin
+    if (item.score > bucket.maxScore) {
+      bucket.maxScore = item.score
+      bucket.topSpot = item.spot
+    }
+    accumulator[item.pref] = bucket
+    return accumulator
+  }, {})).map((item) => ({
+    ...item,
+    averageScore: Math.round(item.totalScore / item.alertCount),
+    averageWait: Math.round(item.totalWait / item.alertCount),
+  })).sort((left, right) => right.alertCount - left.alertCount || right.averageScore - left.averageScore), [])
+  const areaRoutes = useMemo(() => locationSeeds.slice(0, 12).map((location, index) => {
+    const route = buildAreaRoute(location, index)
+    const routeAlerts = alerts.filter((item) => item.spot === location.spot)
+    return {
+      ...route,
+      alertCount: routeAlerts.length,
+      topScore: Math.max(...routeAlerts.map((item) => item.score)),
+      categories: [...new Set(routeAlerts.map((item) => item.category))].slice(0, 3),
+    }
+  }), [])
 
   useEffect(() => {
     setPage(1)
-  }, [query, category])
+  }, [query, prefecture, category, sortBy])
+
+  function applyAreaPreset(route) {
+    setPrefecture(route.pref)
+    setCategory('すべて')
+    setQuery(route.spot)
+  }
 
   function toggleSave(id) {
     const next = saved.includes(id) ? saved.filter((item) => item !== id) : [...saved, id]
@@ -291,15 +358,39 @@ function App() {
           <p>LINE、X、メール、Slackを入口に、UGCで鮮度を作りながら収益導線を太くします。</p>
         </aside>
       </section>
-      <section className="controls" aria-label="検索条件">
+      <section className="controls controls-search" aria-label="検索条件">
         <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="地域・カテゴリ・通知条件で検索" />
+        <select value={prefecture} onChange={(event) => setPrefecture(event.target.value)}>{prefectures.map((item) => <option key={item}>{item}</option>)}</select>
         <select value={category} onChange={(event) => setCategory(event.target.value)}>{categories.map((item) => <option key={item}>{item}</option>)}</select>
+        <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+          <option value="score">注目度順</option>
+          <option value="wait">待機時間が短い順</option>
+          <option value="vacancy">空き台数が多い順</option>
+          <option value="updated">更新が新しい順</option>
+        </select>
+      </section>
+      <section className="controls" aria-label="検索サマリー">
+        <p className="filter-summary">条件: {prefecture} / {category} / {sortBy === 'score' ? '注目度順' : sortBy === 'wait' ? '待機時間順' : sortBy === 'vacancy' ? '空き台数順' : '更新順'}</p>
+        <span>{query === '' ? 'キーワード未指定' : `キーワード: ${query}`}</span>
       </section>
       <section className="metrics">
         <article><span>Alert seeds</span><strong>{alerts.length}</strong></article>
         <article><span>Channels</span><strong>{channels.length}</strong></article>
         <article><span>Saved</span><strong>{saved.length}</strong></article>
         <article><span>UGC</span><strong>{posts.length}</strong></article>
+      </section>
+      <section className="seo-section">
+        <h2>都道府県別集計</h2>
+        <div className="seo-grid">
+          {prefectureSummary.slice(0, 6).map((summary) => (
+            <article key={summary.pref}>
+              <b>{summary.pref}</b>
+              <p>登録 alert: {summary.alertCount}件 / 平均注目度: {summary.averageScore}</p>
+              <p>平均待機: {summary.averageWait}分 / 代表スポット: {summary.topSpot}</p>
+              <button type="button" onClick={() => setPrefecture(summary.pref)}>この都道府県で絞り込む</button>
+            </article>
+          ))}
+        </div>
       </section>
       <section className="controls" aria-label="表示状態">
         <p>表示中: {visibleAlerts.length} / 検索一致: {filtered.length}</p>
@@ -346,7 +437,18 @@ function App() {
         </div>
       </section>
       <section className="seo-section">
-        <h2>SEO / AIO / LLMO</h2>
+        <h2>SEO / AIO / LLMO 優先導線</h2>
+        <div className="seo-grid">
+          {areaRoutes.map((route) => (
+            <article key={route.id}>
+              <b>{route.pref} {route.spot}</b>
+              <p>想定URL: {route.url}</p>
+              <p>通知カテゴリ: {route.categories.join(' / ')} / alert件数: {route.alertCount}</p>
+              <p>最寄駅: {route.station} / 駐車場: {route.parking} / 最大注目度: {route.topScore}</p>
+              <button type="button" onClick={() => applyAreaPreset(route)}>このエリアを開く</button>
+            </article>
+          ))}
+        </div>
         <div className="seo-grid">
           <article><b>地域ページ</b><p>地域名、駅名、施設名ごとに通知ニーズを拾います。</p></article>
           <article><b>条件ページ</b><p>空き、値下げ、閉店、在庫、混雑、期限など行動直前の検索を狙います。</p></article>
