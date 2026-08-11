@@ -18,34 +18,6 @@ if (!locationMatch || !blueprintMatch) {
 const locationSeeds = Function(`return [${locationMatch[1]}]`)()
 const categoryBlueprints = Function(`return [${blueprintMatch[1]}]`)()
 
-const alerts = locationSeeds.flatMap((location, locationIndex) => (
-  categoryBlueprints.map((blueprint, blueprintIndex) => {
-    const score = Math.max(70, blueprint.baseScore - ((locationIndex * 2 + blueprintIndex) % 17))
-    const waitMin = 8 + ((locationIndex + blueprintIndex * 3) % 34)
-    const parkingVacancy = 6 + ((locationIndex * 3 + blueprintIndex * 5) % 62)
-    const updateHour = String(8 + ((locationIndex + blueprintIndex) % 11)).padStart(2, '0')
-    const updateMin = String((locationIndex * 7 + blueprintIndex * 13) % 60).padStart(2, '0')
-    return {
-      id: `tourism-crowd-parking-alert-${locationIndex + 1}-${blueprint.key}`,
-      pref: location.pref,
-      areaName: location.area,
-      spot: location.spot,
-      station: location.station,
-      parking: location.parking,
-      title: `${location.spot} ${blueprint.label}`,
-      category: blueprint.category,
-      score,
-      summary: `${location.spot}（最寄: ${location.station}）周辺の${blueprint.category}通知。${location.parking}の空きと、観光導線の変化を条件一致で通知します。`,
-      channels: blueprint.channels,
-      revenue: blueprint.revenue,
-      source: blueprint.source,
-      waitMin,
-      parkingVacancy,
-      updatedAt: `2026-08-11 ${updateHour}:${updateMin}`,
-    }
-  })
-))
-
 const regionMap = {
   '北海道': '北海道',
   '青森県': '東北',
@@ -95,7 +67,35 @@ const regionMap = {
   '沖縄県': '沖縄',
 }
 
-const escapeHtml = (value) => value
+const alerts = locationSeeds.flatMap((location, locationIndex) => (
+  categoryBlueprints.map((blueprint, blueprintIndex) => {
+    const score = Math.max(70, blueprint.baseScore - ((locationIndex * 2 + blueprintIndex) % 17))
+    const waitMin = 8 + ((locationIndex + blueprintIndex * 3) % 34)
+    const parkingVacancy = 6 + ((locationIndex * 3 + blueprintIndex * 5) % 62)
+    const updateHour = String(8 + ((locationIndex + blueprintIndex) % 11)).padStart(2, '0')
+    const updateMin = String((locationIndex * 7 + blueprintIndex * 13) % 60).padStart(2, '0')
+    return {
+      id: `tourism-crowd-parking-alert-${locationIndex + 1}-${blueprint.key}`,
+      pref: location.pref,
+      areaName: location.area,
+      spot: location.spot,
+      station: location.station,
+      parking: location.parking,
+      title: `${location.spot} ${blueprint.label}`,
+      category: blueprint.category,
+      score,
+      summary: `${location.spot}（最寄: ${location.station}）周辺の${blueprint.category}通知。${location.parking}の空きと、観光導線の変化を条件一致で通知します。`,
+      channels: blueprint.channels,
+      revenue: blueprint.revenue,
+      source: blueprint.source,
+      waitMin,
+      parkingVacancy,
+      updatedAt: `2026-08-11 ${updateHour}:${updateMin}`,
+    }
+  })
+))
+
+const escapeHtml = (value) => String(value ?? '')
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;')
@@ -108,6 +108,26 @@ const areaPages = locationSeeds.map((location) => ({
   region: regionMap[location.pref] ?? 'その他',
   alerts: alerts.filter((item) => item.spot === location.spot && item.pref === location.pref),
 }))
+
+const renderRouteList = (items) => items.length === 0
+  ? '<p class="empty-note">関連エリアは準備中です。</p>'
+  : `<div class="related-grid">${items.map((item) => `
+      <a class="related-link" href="${encodeURI(`https://tourismparking.jp${item.path}`)}">
+        <strong>${escapeHtml(item.pref)} ${escapeHtml(item.spot)}</strong>
+        <span>${escapeHtml(item.area)} / ${escapeHtml(item.station)}</span>
+      </a>`).join('')}
+    </div>`
+
+const renderRanking = (title, items, formatter) => `
+  <section class="section-box">
+    <h2>${title}</h2>
+    <div class="ranking-grid">${items.map((item, index) => `
+      <article>
+        <h3>${index + 1}. ${escapeHtml(item.title)}</h3>
+        <p>${formatter(item)}</p>
+      </article>`).join('')}
+    </div>
+  </section>`
 
 rmSync(areasDir, { recursive: true, force: true })
 
@@ -122,6 +142,16 @@ for (const area of areaPages) {
   const relatedSameRegion = areaPages
     .filter((item) => item.region === area.region && item.pref !== area.pref)
     .slice(0, 4)
+
+  const nearbyTopScore = alerts
+    .filter((item) => item.pref === area.pref && item.spot !== area.spot)
+    .sort((left, right) => right.score - left.score || left.waitMin - right.waitMin)
+    .slice(0, 5)
+
+  const nearbyFastest = alerts
+    .filter((item) => regionMap[item.pref] === area.region && item.spot !== area.spot)
+    .sort((left, right) => left.waitMin - right.waitMin || right.score - left.score)
+    .slice(0, 5)
 
   const faqItems = [
     {
@@ -186,15 +216,6 @@ for (const area of areaPages) {
       <p class="meta">通知: ${escapeHtml(alert.channels.join(' / '))} / 収益導線: ${escapeHtml(alert.revenue)}</p>
     </article>`).join('')
 
-  const renderRouteList = (items) => items.length === 0
-    ? '<p class="empty-note">関連エリアは準備中です。</p>'
-    : `<div class="related-grid">${items.map((item) => `
-        <a class="related-link" href="${encodeURI(`https://tourismparking.jp${item.path}`)}">
-          <strong>${escapeHtml(item.pref)} ${escapeHtml(item.spot)}</strong>
-          <span>${escapeHtml(item.area)} / ${escapeHtml(item.station)}</span>
-        </a>`).join('')}
-      </div>`
-
   const faqHtml = faqItems.map((item) => `
         <article>
           <h3>${escapeHtml(item.question)}</h3>
@@ -236,10 +257,10 @@ for (const area of areaPages) {
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -265,6 +286,8 @@ for (const area of areaPages) {
         <h2>${escapeHtml(area.region)}エリアの関連スポット</h2>
         ${renderRouteList(relatedSameRegion)}
       </section>
+      ${renderRanking('同県内の注目度ランキング', nearbyTopScore, (item) => `${escapeHtml(item.area)} / 注目度 ${item.score} / 待機 ${item.waitMin}分`)}
+      ${renderRanking('同地域の待機時間ランキング', nearbyFastest, (item) => `${escapeHtml(item.area)} / 待機 ${item.waitMin}分 / 空き ${item.parkingVacancy}台`)}
       <section class="alert-grid">${cards}
       </section>
       <section class="section-box">

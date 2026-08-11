@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -57,33 +57,85 @@
       <section class="section-box">
         <h2>同じ都道府県の関連エリア</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C/%E9%9C%A7%E5%B3%B6/%E9%9C%A7%E5%B3%B6%E7%A5%9E%E5%AE%AE/">
-          <strong>鹿児島県 霧島神宮</strong>
-          <span>霧島 / 霧島神宮駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C/%E9%9C%A7%E5%B3%B6/%E9%9C%A7%E5%B3%B6%E7%A5%9E%E5%AE%AE/">
+        <strong>鹿児島県 霧島神宮</strong>
+        <span>霧島 / 霧島神宮駅</span>
+      </a>
+    </div>
       </section>
       <section class="section-box">
         <h2>九州エリアの関連スポット</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E7%A6%8F%E5%B2%A1/%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE/">
-          <strong>福岡県 太宰府天満宮</strong>
-          <span>福岡 / 太宰府駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E5%8C%97%E4%B9%9D%E5%B7%9E/%E9%96%80%E5%8F%B8%E6%B8%AF%E3%83%AC%E3%83%88%E3%83%AD/">
-          <strong>福岡県 門司港レトロ</strong>
-          <span>北九州 / 門司港駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E4%BD%90%E8%B3%80%E7%9C%8C/%E4%BD%90%E8%B3%80/%E5%90%89%E9%87%8E%E3%83%B6%E9%87%8C%E6%AD%B4%E5%8F%B2%E5%85%AC%E5%9C%92/">
-          <strong>佐賀県 吉野ヶ里歴史公園</strong>
-          <span>佐賀 / 吉野ヶ里公園駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E9%95%B7%E5%B4%8E%E7%9C%8C/%E9%95%B7%E5%B4%8E/%E3%82%B0%E3%83%A9%E3%83%90%E3%83%BC%E5%9C%92/">
-          <strong>長崎県 グラバー園</strong>
-          <span>長崎 / 大浦天主堂駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E7%A6%8F%E5%B2%A1/%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE/">
+        <strong>福岡県 太宰府天満宮</strong>
+        <span>福岡 / 太宰府駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E5%8C%97%E4%B9%9D%E5%B7%9E/%E9%96%80%E5%8F%B8%E6%B8%AF%E3%83%AC%E3%83%88%E3%83%AD/">
+        <strong>福岡県 門司港レトロ</strong>
+        <span>北九州 / 門司港駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E4%BD%90%E8%B3%80%E7%9C%8C/%E4%BD%90%E8%B3%80/%E5%90%89%E9%87%8E%E3%83%B6%E9%87%8C%E6%AD%B4%E5%8F%B2%E5%85%AC%E5%9C%92/">
+        <strong>佐賀県 吉野ヶ里歴史公園</strong>
+        <span>佐賀 / 吉野ヶ里公園駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E9%95%B7%E5%B4%8E%E7%9C%8C/%E9%95%B7%E5%B4%8E/%E3%82%B0%E3%83%A9%E3%83%90%E3%83%BC%E5%9C%92/">
+        <strong>長崎県 グラバー園</strong>
+        <span>長崎 / 大浦天主堂駅</span>
+      </a>
+    </div>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 霧島神宮 混雑ピーク予測</h3>
+        <p> / 注目度 87 / 待機 29分</p>
+      </article>
+      <article>
+        <h3>2. 霧島神宮 駐車場空き変動</h3>
+        <p> / 注目度 83 / 待機 32分</p>
+      </article>
+      <article>
+        <h3>3. 霧島神宮 周辺導線提案</h3>
+        <p> / 注目度 79 / 待機 35分</p>
+      </article>
+      <article>
+        <h3>4. 霧島神宮 周辺飲食クーポン通知</h3>
+        <p> / 注目度 77 / 待機 38分</p>
+      </article>
+      <article>
+        <h3>5. 霧島神宮 当日券・割引枠通知</h3>
+        <p> / 注目度 75 / 待機 41分</p>
+      </article>
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 草千里ヶ浜 子連れ優先ルート通知</h3>
+        <p> / 待機 8分 / 空き 62台</p>
+      </article>
+      <article>
+        <h3>2. 青島神社 イベント開催日交通警戒</h3>
+        <p> / 待機 8分 / 空き 66台</p>
+      </article>
+      <article>
+        <h3>3. 吉野ヶ里歴史公園 ライトアップ混雑通知</h3>
+        <p> / 待機 8分 / 空き 58台</p>
+      </article>
+      <article>
+        <h3>4. グラバー園 ライトアップ混雑通知</h3>
+        <p> / 待機 9分 / 空き 61台</p>
+      </article>
+      <article>
+        <h3>5. 湯の坪街道 子連れ優先ルート通知</h3>
+        <p> / 待機 9分 / 空き 65台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>89</strong></div>

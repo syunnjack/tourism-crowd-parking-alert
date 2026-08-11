@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -61,12 +61,44 @@
       <section class="section-box">
         <h2>四国エリアの関連スポット</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E6%84%9B%E5%AA%9B%E7%9C%8C/%E6%9D%BE%E5%B1%B1/%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89/">
-          <strong>愛媛県 道後温泉</strong>
-          <span>松山 / 道後温泉駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E6%84%9B%E5%AA%9B%E7%9C%8C/%E6%9D%BE%E5%B1%B1/%E9%81%93%E5%BE%8C%E6%B8%A9%E6%B3%89/">
+        <strong>愛媛県 道後温泉</strong>
+        <span>松山 / 道後温泉駅</span>
+      </a>
+    </div>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 道後温泉 混雑ピーク予測</h3>
+        <p> / 待機 17分 / 空き 11台</p>
+      </article>
+      <article>
+        <h3>2. 道後温泉 駐車場空き変動</h3>
+        <p> / 待機 20分 / 空き 16台</p>
+      </article>
+      <article>
+        <h3>3. 道後温泉 周辺導線提案</h3>
+        <p> / 待機 23分 / 空き 21台</p>
+      </article>
+      <article>
+        <h3>4. 道後温泉 周辺飲食クーポン通知</h3>
+        <p> / 待機 26分 / 空き 26台</p>
+      </article>
+      <article>
+        <h3>5. 道後温泉 当日券・割引枠通知</h3>
+        <p> / 待機 29分 / 空き 31台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>92</strong></div>

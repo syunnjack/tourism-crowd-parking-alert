@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -57,33 +57,85 @@
       <section class="section-box">
         <h2>同じ都道府県の関連エリア</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E5%AE%AE%E5%9F%8E%E7%9C%8C/%E6%9D%BE%E5%B3%B6/%E6%9D%BE%E5%B3%B6%E6%B5%B7%E5%B2%B8/">
-          <strong>宮城県 松島海岸</strong>
-          <span>松島 / 松島海岸駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E5%AE%AE%E5%9F%8E%E7%9C%8C/%E6%9D%BE%E5%B3%B6/%E6%9D%BE%E5%B3%B6%E6%B5%B7%E5%B2%B8/">
+        <strong>宮城県 松島海岸</strong>
+        <span>松島 / 松島海岸駅</span>
+      </a>
+    </div>
       </section>
       <section class="section-box">
         <h2>東北エリアの関連スポット</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E5%B1%B1%E5%BD%A2%E7%9C%8C/%E5%B1%B1%E5%BD%A2/%E8%94%B5%E7%8E%8B%E6%B8%A9%E6%B3%89/">
-          <strong>山形県 蔵王温泉</strong>
-          <span>山形 / 山形駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B3%B6%E7%9C%8C/%E7%A6%8F%E5%B3%B6/%E9%B6%B4%E3%83%B6%E5%9F%8E/">
-          <strong>福島県 鶴ヶ城</strong>
-          <span>福島 / 会津若松駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E9%9D%92%E6%A3%AE%E7%9C%8C/%E5%BC%98%E5%89%8D/%E5%BC%98%E5%89%8D%E5%85%AC%E5%9C%92/">
-          <strong>青森県 弘前公園</strong>
-          <span>弘前 / 弘前駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E9%9D%92%E6%A3%AE%E7%9C%8C/%E5%85%AB%E6%88%B8/%E8%95%AA%E5%B3%B6/">
-          <strong>青森県 蕪島</strong>
-          <span>八戸 / 鮫駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E5%B1%B1%E5%BD%A2%E7%9C%8C/%E5%B1%B1%E5%BD%A2/%E8%94%B5%E7%8E%8B%E6%B8%A9%E6%B3%89/">
+        <strong>山形県 蔵王温泉</strong>
+        <span>山形 / 山形駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B3%B6%E7%9C%8C/%E7%A6%8F%E5%B3%B6/%E9%B6%B4%E3%83%B6%E5%9F%8E/">
+        <strong>福島県 鶴ヶ城</strong>
+        <span>福島 / 会津若松駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E9%9D%92%E6%A3%AE%E7%9C%8C/%E5%BC%98%E5%89%8D/%E5%BC%98%E5%89%8D%E5%85%AC%E5%9C%92/">
+        <strong>青森県 弘前公園</strong>
+        <span>弘前 / 弘前駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E9%9D%92%E6%A3%AE%E7%9C%8C/%E5%85%AB%E6%88%B8/%E8%95%AA%E5%B3%B6/">
+        <strong>青森県 蕪島</strong>
+        <span>八戸 / 鮫駅</span>
+      </a>
+    </div>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 松島海岸 混雑ピーク予測</h3>
+        <p> / 注目度 89 / 待機 28分</p>
+      </article>
+      <article>
+        <h3>2. 松島海岸 駐車場空き変動</h3>
+        <p> / 注目度 85 / 待機 31分</p>
+      </article>
+      <article>
+        <h3>3. 松島海岸 周辺導線提案</h3>
+        <p> / 注目度 81 / 待機 34分</p>
+      </article>
+      <article>
+        <h3>4. 松島海岸 周辺飲食クーポン通知</h3>
+        <p> / 注目度 79 / 待機 37分</p>
+      </article>
+      <article>
+        <h3>5. 松島海岸 当日券・割引枠通知</h3>
+        <p> / 注目度 77 / 待機 40分</p>
+      </article>
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. アクアマリンふくしま 混雑ピーク予測</h3>
+        <p> / 待機 8分 / 空き 24台</p>
+      </article>
+      <article>
+        <h3>2. 弘前公園 周辺飲食クーポン通知</h3>
+        <p> / 待機 8分 / 空き 12台</p>
+      </article>
+      <article>
+        <h3>3. 中尊寺 周辺導線提案</h3>
+        <p> / 待機 8分 / 空き 16台</p>
+      </article>
+      <article>
+        <h3>4. 山居倉庫 駐車場空き変動</h3>
+        <p> / 待機 8分 / 空き 20台</p>
+      </article>
+      <article>
+        <h3>5. 鶴ヶ城 当日券・割引枠通知</h3>
+        <p> / 待機 8分 / 空き 30台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>91</strong></div>

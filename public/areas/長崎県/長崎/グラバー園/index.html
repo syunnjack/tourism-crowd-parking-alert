@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -61,24 +61,56 @@
       <section class="section-box">
         <h2>九州エリアの関連スポット</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E7%A6%8F%E5%B2%A1/%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE/">
-          <strong>福岡県 太宰府天満宮</strong>
-          <span>福岡 / 太宰府駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E5%8C%97%E4%B9%9D%E5%B7%9E/%E9%96%80%E5%8F%B8%E6%B8%AF%E3%83%AC%E3%83%88%E3%83%AD/">
-          <strong>福岡県 門司港レトロ</strong>
-          <span>北九州 / 門司港駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E4%BD%90%E8%B3%80%E7%9C%8C/%E4%BD%90%E8%B3%80/%E5%90%89%E9%87%8E%E3%83%B6%E9%87%8C%E6%AD%B4%E5%8F%B2%E5%85%AC%E5%9C%92/">
-          <strong>佐賀県 吉野ヶ里歴史公園</strong>
-          <span>佐賀 / 吉野ヶ里公園駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E7%86%8A%E6%9C%AC%E7%9C%8C/%E7%86%8A%E6%9C%AC/%E7%86%8A%E6%9C%AC%E5%9F%8E/">
-          <strong>熊本県 熊本城</strong>
-          <span>熊本 / 熊本城・市役所前駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E7%A6%8F%E5%B2%A1/%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE/">
+        <strong>福岡県 太宰府天満宮</strong>
+        <span>福岡 / 太宰府駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E7%A6%8F%E5%B2%A1%E7%9C%8C/%E5%8C%97%E4%B9%9D%E5%B7%9E/%E9%96%80%E5%8F%B8%E6%B8%AF%E3%83%AC%E3%83%88%E3%83%AD/">
+        <strong>福岡県 門司港レトロ</strong>
+        <span>北九州 / 門司港駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E4%BD%90%E8%B3%80%E7%9C%8C/%E4%BD%90%E8%B3%80/%E5%90%89%E9%87%8E%E3%83%B6%E9%87%8C%E6%AD%B4%E5%8F%B2%E5%85%AC%E5%9C%92/">
+        <strong>佐賀県 吉野ヶ里歴史公園</strong>
+        <span>佐賀 / 吉野ヶ里公園駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E7%86%8A%E6%9C%AC%E7%9C%8C/%E7%86%8A%E6%9C%AC/%E7%86%8A%E6%9C%AC%E5%9F%8E/">
+        <strong>熊本県 熊本城</strong>
+        <span>熊本 / 熊本城・市役所前駅</span>
+      </a>
+    </div>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 草千里ヶ浜 子連れ優先ルート通知</h3>
+        <p> / 待機 8分 / 空き 62台</p>
+      </article>
+      <article>
+        <h3>2. 青島神社 イベント開催日交通警戒</h3>
+        <p> / 待機 8分 / 空き 66台</p>
+      </article>
+      <article>
+        <h3>3. 吉野ヶ里歴史公園 ライトアップ混雑通知</h3>
+        <p> / 待機 8分 / 空き 58台</p>
+      </article>
+      <article>
+        <h3>4. 湯の坪街道 子連れ優先ルート通知</h3>
+        <p> / 待機 9分 / 空き 65台</p>
+      </article>
+      <article>
+        <h3>5. 仙巌園 イベント開催日交通警戒</h3>
+        <p> / 待機 9分 / 空き 7台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>84</strong></div>

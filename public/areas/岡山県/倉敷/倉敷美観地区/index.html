@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -61,12 +61,44 @@
       <section class="section-box">
         <h2>中国エリアの関連スポット</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E5%BA%83%E5%B3%B6%E7%9C%8C/%E5%BA%83%E5%B3%B6/%E5%AE%AE%E5%B3%B6/">
-          <strong>広島県 宮島</strong>
-          <span>広島 / 宮島口駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E5%BA%83%E5%B3%B6%E7%9C%8C/%E5%BA%83%E5%B3%B6/%E5%AE%AE%E5%B3%B6/">
+        <strong>広島県 宮島</strong>
+        <span>広島 / 宮島口駅</span>
+      </a>
+    </div>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 宮島 混雑ピーク予測</h3>
+        <p> / 待機 16分 / 空き 8台</p>
+      </article>
+      <article>
+        <h3>2. 宮島 駐車場空き変動</h3>
+        <p> / 待機 19分 / 空き 13台</p>
+      </article>
+      <article>
+        <h3>3. 宮島 周辺導線提案</h3>
+        <p> / 待機 22分 / 空き 18台</p>
+      </article>
+      <article>
+        <h3>4. 宮島 周辺飲食クーポン通知</h3>
+        <p> / 待機 25分 / 空き 23台</p>
+      </article>
+      <article>
+        <h3>5. 宮島 当日券・割引枠通知</h3>
+        <p> / 待機 28分 / 空き 28台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>81</strong></div>

@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -61,12 +61,44 @@
       <section class="section-box">
         <h2>四国エリアの関連スポット</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E9%AB%98%E7%9F%A5%E7%9C%8C/%E9%AB%98%E7%9F%A5/%E3%81%B2%E3%82%8D%E3%82%81%E5%B8%82%E5%A0%B4/">
-          <strong>高知県 ひろめ市場</strong>
-          <span>高知 / 高知駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E9%AB%98%E7%9F%A5%E7%9C%8C/%E9%AB%98%E7%9F%A5/%E3%81%B2%E3%82%8D%E3%82%81%E5%B8%82%E5%A0%B4/">
+        <strong>高知県 ひろめ市場</strong>
+        <span>高知 / 高知駅</span>
+      </a>
+    </div>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. ひろめ市場 雨天時代替スポット通知</h3>
+        <p> / 待機 8分 / 空き 54台</p>
+      </article>
+      <article>
+        <h3>2. ひろめ市場 混雑ピーク予測</h3>
+        <p> / 待機 18分 / 空き 14台</p>
+      </article>
+      <article>
+        <h3>3. ひろめ市場 駐車場空き変動</h3>
+        <p> / 待機 21分 / 空き 19台</p>
+      </article>
+      <article>
+        <h3>4. ひろめ市場 周辺導線提案</h3>
+        <p> / 待機 24分 / 空き 24台</p>
+      </article>
+      <article>
+        <h3>5. ひろめ市場 周辺飲食クーポン通知</h3>
+        <p> / 待機 27分 / 空き 29台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>94</strong></div>

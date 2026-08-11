@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -57,33 +57,85 @@
       <section class="section-box">
         <h2>同じ都道府県の関連エリア</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E5%A4%A7%E9%98%AA%E5%BA%9C/%E5%A4%A7%E9%98%AA/%E5%A4%A7%E9%98%AA%E5%9F%8E/">
-          <strong>大阪府 大阪城</strong>
-          <span>大阪 / 大阪城公園駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E5%A4%A7%E9%98%AA%E5%BA%9C/%E5%A4%A7%E9%98%AA/%E5%A4%A7%E9%98%AA%E5%9F%8E/">
+        <strong>大阪府 大阪城</strong>
+        <span>大阪 / 大阪城公園駅</span>
+      </a>
+    </div>
       </section>
       <section class="section-box">
         <h2>近畿エリアの関連スポット</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E4%BA%AC%E9%83%BD%E5%BA%9C/%E4%BA%AC%E9%83%BD/%E6%B8%85%E6%B0%B4%E5%AF%BA/">
-          <strong>京都府 清水寺</strong>
-          <span>京都 / 清水五条駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E4%BA%AC%E9%83%BD%E5%BA%9C/%E5%B5%90%E5%B1%B1/%E6%B8%A1%E6%9C%88%E6%A9%8B/">
-          <strong>京都府 渡月橋</strong>
-          <span>嵐山 / 嵐山駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E5%85%B5%E5%BA%AB%E7%9C%8C/%E7%A5%9E%E6%88%B8/%E3%83%8F%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89/">
-          <strong>兵庫県 ハーバーランド</strong>
-          <span>神戸 / 神戸駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E5%85%B5%E5%BA%AB%E7%9C%8C/%E5%A7%AB%E8%B7%AF/%E5%A7%AB%E8%B7%AF%E5%9F%8E/">
-          <strong>兵庫県 姫路城</strong>
-          <span>姫路 / 姫路駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E4%BA%AC%E9%83%BD%E5%BA%9C/%E4%BA%AC%E9%83%BD/%E6%B8%85%E6%B0%B4%E5%AF%BA/">
+        <strong>京都府 清水寺</strong>
+        <span>京都 / 清水五条駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E4%BA%AC%E9%83%BD%E5%BA%9C/%E5%B5%90%E5%B1%B1/%E6%B8%A1%E6%9C%88%E6%A9%8B/">
+        <strong>京都府 渡月橋</strong>
+        <span>嵐山 / 嵐山駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E5%85%B5%E5%BA%AB%E7%9C%8C/%E7%A5%9E%E6%88%B8/%E3%83%8F%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89/">
+        <strong>兵庫県 ハーバーランド</strong>
+        <span>神戸 / 神戸駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E5%85%B5%E5%BA%AB%E7%9C%8C/%E5%A7%AB%E8%B7%AF/%E5%A7%AB%E8%B7%AF%E5%9F%8E/">
+        <strong>兵庫県 姫路城</strong>
+        <span>姫路 / 姫路駅</span>
+      </a>
+    </div>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 大阪城 混雑ピーク予測</h3>
+        <p> / 注目度 93 / 待機 9分</p>
+      </article>
+      <article>
+        <h3>2. 大阪城 駐車場空き変動</h3>
+        <p> / 注目度 89 / 待機 12分</p>
+      </article>
+      <article>
+        <h3>3. 大阪城 周辺導線提案</h3>
+        <p> / 注目度 85 / 待機 15分</p>
+      </article>
+      <article>
+        <h3>4. 大阪城 周辺飲食クーポン通知</h3>
+        <p> / 注目度 83 / 待機 18分</p>
+      </article>
+      <article>
+        <h3>5. 大阪城 当日券・割引枠通知</h3>
+        <p> / 注目度 81 / 待機 21分</p>
+      </article>
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 渡月橋 混雑ピーク予測</h3>
+        <p> / 待機 8分 / 空き 46台</p>
+      </article>
+      <article>
+        <h3>2. 大阪城 混雑ピーク予測</h3>
+        <p> / 待機 9分 / 空き 49台</p>
+      </article>
+      <article>
+        <h3>3. 清水寺 駐車場空き変動</h3>
+        <p> / 待機 10分 / 空き 48台</p>
+      </article>
+      <article>
+        <h3>4. 渡月橋 駐車場空き変動</h3>
+        <p> / 待機 11分 / 空き 51台</p>
+      </article>
+      <article>
+        <h3>5. ハーバーランド 混雑ピーク予測</h3>
+        <p> / 待機 11分 / 空き 55台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>91</strong></div>

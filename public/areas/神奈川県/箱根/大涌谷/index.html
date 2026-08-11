@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -57,37 +57,89 @@
       <section class="section-box">
         <h2>同じ都道府県の関連エリア</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/%E9%8E%8C%E5%80%89/%E9%B6%B4%E5%B2%A1%E5%85%AB%E5%B9%A1%E5%AE%AE/">
-          <strong>神奈川県 鶴岡八幡宮</strong>
-          <span>鎌倉 / 鎌倉駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/%E6%A8%AA%E6%B5%9C%E3%81%BF%E3%81%AA%E3%81%A8%E3%81%BF%E3%82%89%E3%81%84/%E8%B5%A4%E3%83%AC%E3%83%B3%E3%82%AC%E5%80%89%E5%BA%AB/">
-          <strong>神奈川県 赤レンガ倉庫</strong>
-          <span>横浜みなとみらい / 馬車道駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/%E9%8E%8C%E5%80%89/%E9%B6%B4%E5%B2%A1%E5%85%AB%E5%B9%A1%E5%AE%AE/">
+        <strong>神奈川県 鶴岡八幡宮</strong>
+        <span>鎌倉 / 鎌倉駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C/%E6%A8%AA%E6%B5%9C%E3%81%BF%E3%81%AA%E3%81%A8%E3%81%BF%E3%82%89%E3%81%84/%E8%B5%A4%E3%83%AC%E3%83%B3%E3%82%AC%E5%80%89%E5%BA%AB/">
+        <strong>神奈川県 赤レンガ倉庫</strong>
+        <span>横浜みなとみらい / 馬車道駅</span>
+      </a>
+    </div>
       </section>
       <section class="section-box">
         <h2>関東エリアの関連スポット</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E6%9D%B1%E4%BA%AC%E9%83%BD/%E6%B5%85%E8%8D%89/%E6%B5%85%E8%8D%89%E5%AF%BA/">
-          <strong>東京都 浅草寺</strong>
-          <span>浅草 / 浅草駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E6%9D%B1%E4%BA%AC%E9%83%BD/%E4%B8%8A%E9%87%8E/%E4%B8%8A%E9%87%8E%E6%81%A9%E8%B3%9C%E5%85%AC%E5%9C%92/">
-          <strong>東京都 上野恩賜公園</strong>
-          <span>上野 / 上野駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E6%9D%B1%E4%BA%AC%E9%83%BD/%E3%81%8A%E5%8F%B0%E5%A0%B4/%E3%83%80%E3%82%A4%E3%83%90%E3%83%BC%E3%82%B7%E3%83%86%E3%82%A3%E6%9D%B1%E4%BA%AC/">
-          <strong>東京都 ダイバーシティ東京</strong>
-          <span>お台場 / 台場駅</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E5%9F%BC%E7%8E%89%E7%9C%8C/%E5%B7%9D%E8%B6%8A/%E8%94%B5%E9%80%A0%E3%82%8A%E3%81%AE%E7%94%BA%E4%B8%A6%E3%81%BF/">
-          <strong>埼玉県 蔵造りの町並み</strong>
-          <span>川越 / 本川越駅</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E6%9D%B1%E4%BA%AC%E9%83%BD/%E6%B5%85%E8%8D%89/%E6%B5%85%E8%8D%89%E5%AF%BA/">
+        <strong>東京都 浅草寺</strong>
+        <span>浅草 / 浅草駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E6%9D%B1%E4%BA%AC%E9%83%BD/%E4%B8%8A%E9%87%8E/%E4%B8%8A%E9%87%8E%E6%81%A9%E8%B3%9C%E5%85%AC%E5%9C%92/">
+        <strong>東京都 上野恩賜公園</strong>
+        <span>上野 / 上野駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E6%9D%B1%E4%BA%AC%E9%83%BD/%E3%81%8A%E5%8F%B0%E5%A0%B4/%E3%83%80%E3%82%A4%E3%83%90%E3%83%BC%E3%82%B7%E3%83%86%E3%82%A3%E6%9D%B1%E4%BA%AC/">
+        <strong>東京都 ダイバーシティ東京</strong>
+        <span>お台場 / 台場駅</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E5%9F%BC%E7%8E%89%E7%9C%8C/%E5%B7%9D%E8%B6%8A/%E8%94%B5%E9%80%A0%E3%82%8A%E3%81%AE%E7%94%BA%E4%B8%A6%E3%81%BF/">
+        <strong>埼玉県 蔵造りの町並み</strong>
+        <span>川越 / 本川越駅</span>
+      </a>
+    </div>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 鶴岡八幡宮 混雑ピーク予測</h3>
+        <p> / 注目度 89 / 待機 11分</p>
+      </article>
+      <article>
+        <h3>2. 赤レンガ倉庫 混雑ピーク予測</h3>
+        <p> / 注目度 85 / 待機 13分</p>
+      </article>
+      <article>
+        <h3>3. 鶴岡八幡宮 駐車場空き変動</h3>
+        <p> / 注目度 85 / 待機 14分</p>
+      </article>
+      <article>
+        <h3>4. 赤レンガ倉庫 ライトアップ混雑通知</h3>
+        <p> / 注目度 84 / 待機 34分</p>
+      </article>
+      <article>
+        <h3>5. 赤レンガ倉庫 雨天時代替スポット通知</h3>
+        <p> / 注目度 82 / 待機 37分</p>
+      </article>
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 浅草寺 混雑ピーク予測</h3>
+        <p> / 待機 8分 / 空き 6台</p>
+      </article>
+      <article>
+        <h3>2. 赤城山 周辺飲食クーポン通知</h3>
+        <p> / 待機 8分 / 空き 34台</p>
+      </article>
+      <article>
+        <h3>3. 上野恩賜公園 混雑ピーク予測</h3>
+        <p> / 待機 9分 / 空き 9台</p>
+      </article>
+      <article>
+        <h3>4. 大谷資料館 混雑ピーク予測</h3>
+        <p> / 待機 9分 / 空き 27台</p>
+      </article>
+      <article>
+        <h3>5. 湯畑 周辺飲食クーポン通知</h3>
+        <p> / 待機 9分 / 空き 37台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>87</strong></div>

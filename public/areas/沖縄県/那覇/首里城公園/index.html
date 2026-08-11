@@ -33,10 +33,10 @@
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
+      .ranking-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .ranking-grid article, .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
       .empty-note { margin: 0; }
-      .faq-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-      .faq-grid article { padding: 12px; border-radius: 8px; background: #f4f1ea; }
-      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .faq-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 860px) { .summary, .alert-grid, .related-grid, .ranking-grid, .faq-grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -57,20 +57,72 @@
       <section class="section-box">
         <h2>同じ都道府県の関連エリア</h2>
         <div class="related-grid">
-        <a class="related-link" href="https://tourismparking.jp/areas/%E6%B2%96%E7%B8%84%E7%9C%8C/%E6%81%A9%E7%B4%8D%E6%9D%91/%E4%B8%87%E5%BA%A7%E6%AF%9B/">
-          <strong>沖縄県 万座毛</strong>
-          <span>恩納村 / 名護バスターミナル</span>
-        </a>
-        <a class="related-link" href="https://tourismparking.jp/areas/%E6%B2%96%E7%B8%84%E7%9C%8C/%E7%9F%B3%E5%9E%A3/%E5%B7%9D%E5%B9%B3%E6%B9%BE/">
-          <strong>沖縄県 川平湾</strong>
-          <span>石垣 / 石垣港離島ターミナル</span>
-        </a>
-      </div>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E6%B2%96%E7%B8%84%E7%9C%8C/%E6%81%A9%E7%B4%8D%E6%9D%91/%E4%B8%87%E5%BA%A7%E6%AF%9B/">
+        <strong>沖縄県 万座毛</strong>
+        <span>恩納村 / 名護バスターミナル</span>
+      </a>
+      <a class="related-link" href="https://tourismparking.jp/areas/%E6%B2%96%E7%B8%84%E7%9C%8C/%E7%9F%B3%E5%9E%A3/%E5%B7%9D%E5%B9%B3%E6%B9%BE/">
+        <strong>沖縄県 川平湾</strong>
+        <span>石垣 / 石垣港離島ターミナル</span>
+      </a>
+    </div>
       </section>
       <section class="section-box">
         <h2>沖縄エリアの関連スポット</h2>
         <p class="empty-note">関連エリアは準備中です。</p>
       </section>
+      
+  <section class="section-box">
+    <h2>同県内の注目度ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 川平湾 周辺飲食クーポン通知</h3>
+        <p> / 注目度 88 / 待機 41分</p>
+      </article>
+      <article>
+        <h3>2. 川平湾 当日券・割引枠通知</h3>
+        <p> / 注目度 86 / 待機 10分</p>
+      </article>
+      <article>
+        <h3>3. 万座毛 イベント開催日交通警戒</h3>
+        <p> / 注目度 86 / 待機 12分</p>
+      </article>
+      <article>
+        <h3>4. 川平湾 イベント開催日交通警戒</h3>
+        <p> / 注目度 84 / 待機 13分</p>
+      </article>
+      <article>
+        <h3>5. 万座毛 子連れ優先ルート通知</h3>
+        <p> / 注目度 84 / 待機 15分</p>
+      </article>
+    </div>
+  </section>
+      
+  <section class="section-box">
+    <h2>同地域の待機時間ランキング</h2>
+    <div class="ranking-grid">
+      <article>
+        <h3>1. 万座毛 当日券・割引枠通知</h3>
+        <p> / 待機 9分 / 空き 11台</p>
+      </article>
+      <article>
+        <h3>2. 川平湾 当日券・割引枠通知</h3>
+        <p> / 待機 10分 / 空き 14台</p>
+      </article>
+      <article>
+        <h3>3. 万座毛 イベント開催日交通警戒</h3>
+        <p> / 待機 12分 / 空き 16台</p>
+      </article>
+      <article>
+        <h3>4. 川平湾 イベント開催日交通警戒</h3>
+        <p> / 待機 13分 / 空き 19台</p>
+      </article>
+      <article>
+        <h3>5. 万座毛 子連れ優先ルート通知</h3>
+        <p> / 待機 15分 / 空き 21台</p>
+      </article>
+    </div>
+  </section>
       <section class="alert-grid">
     <article class="alert-card">
       <div class="card-top"><span>混雑</span><strong>85</strong></div>
