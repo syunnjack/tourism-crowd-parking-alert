@@ -47,3 +47,15 @@ npm run dev
 npm run lint
 npm run build
 ```
+
+## GitHub Pages Deploy
+
+- Workflow file: `.github/workflows/deploy-pages.yml`
+- Trigger: push to `main` or `master`
+- Output: `dist` directory
+
+If GitHub Pages is not enabled yet:
+
+1. Open repository Settings > Pages
+2. Set Build and deployment source to GitHub Actions
+3. Push to `main` or run the workflow manually
