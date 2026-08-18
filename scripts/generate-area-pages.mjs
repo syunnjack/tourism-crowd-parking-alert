@@ -11,6 +11,10 @@ const coreSitemapFile = resolve(sitemapsDir, 'core.xml')
 const areasSitemapFile = resolve(sitemapsDir, 'areas.xml')
 const robotsFile = resolve(publicDir, 'robots.txt')
 
+const parkingFactsFile = resolve(root, 'data', 'parking-facts.json')
+// 公式サイトで確認できた駐車場の情報。確認できていない場所はここに載せない。
+const parkingFacts = JSON.parse(readFileSync(parkingFactsFile, 'utf8'))
+
 const appSource = readFileSync(appFile, 'utf8')
 const locationMatch = appSource.match(/const locationSeeds = \[(.*?)\]\s*const categoryBlueprints = \[/s)
 const blueprintMatch = appSource.match(/const categoryBlueprints = \[(.*?)\]\s*const alerts =/s)
@@ -160,18 +164,59 @@ for (const area of areaPages) {
     .sort((left, right) => left.waitMin - right.waitMin || right.score - left.score)
     .slice(0, 5)
 
+  // 公式サイトで確認できた駐車場だけを出す。確認できていない場所は、
+  // それらしい駐車場名を書かずに「確認中」と正直に伝える。
+  const spotParkings = parkingFacts.spots[area.spot]?.parkings ?? []
+  const statusLabel = { open: '営業中', closed: '閉鎖中', restricted: '利用制限あり' }
+  const parkingSection = spotParkings.length > 0
+    ? `      <section class="section-box parking-facts">
+        <h2>${escapeHtml(area.spot)}の駐車場（公式サイトで確認）</h2>
+${spotParkings.map((parking) => `        <article class="parking-item" data-status="${escapeHtml(parking.status)}">
+          <h3>${escapeHtml(parking.name)}<span class="parking-status">${escapeHtml(statusLabel[parking.status] ?? '')}</span></h3>
+${parking.capacity ? `          <p><b>収容台数</b> ${escapeHtml(parking.capacity)}</p>` : ''}
+${parking.fee ? `          <p><b>料金</b> ${escapeHtml(parking.fee)}</p>` : ''}
+${parking.hours ? `          <p><b>営業時間</b> ${escapeHtml(parking.hours)}</p>` : ''}
+${parking.note ? `          <p>${escapeHtml(parking.note)}</p>` : ''}
+          <p class="parking-source">出典：<a href="${escapeHtml(parking.sourceUrl)}" rel="nofollow noopener noreferrer" target="_blank">${escapeHtml(parking.sourceLabel)}</a>（${escapeHtml(parkingFacts.asOf)}）</p>
+        </article>`).join('')}
+        <p class="parking-caution">料金や営業時間は変更されることがあります。出発前に出典先の最新情報をご確認ください。</p>
+      </section>`
+    : `      <section class="section-box parking-facts">
+        <h2>${escapeHtml(area.spot)}の駐車場</h2>
+        <p>この場所の駐車場は、公式サイトでの確認が済んでいません。確認できしだい、収容台数・料金・営業時間を出典つきで掲載します。</p>
+      </section>`
+
+  // 待機時間や空き台数の順位は根拠が無いため出さない。
+  // 代わりに、駐車場の情報を公式で確認できた近くのスポットを並べる。
+  const verifiedNearby = areaPages
+    .filter((item) => item.spot !== area.spot && (parkingFacts.spots[item.spot]?.parkings?.length ?? 0) > 0)
+    .slice(0, 6)
+  const verifiedNearbyHtml = verifiedNearby.length > 0
+    ? `      <section class="section-box">
+        <h2>駐車場の情報を確認済みのスポット</h2>
+        <div class="related-grid">${verifiedNearby.map((item) => `
+          <a class="related-link" href="${encodeURI(`https://tourismparking.jp${item.path}`)}">
+            <strong>${escapeHtml(item.pref)} ${escapeHtml(item.spot)}</strong>
+            <span>${escapeHtml(parkingFacts.spots[item.spot].parkings[0].name)}${parkingFacts.spots[item.spot].parkings[0].capacity ? ` / ${escapeHtml(parkingFacts.spots[item.spot].parkings[0].capacity)}` : ''}</span>
+          </a>`).join('')}
+        </div>
+      </section>`
+    : ''
+
   const faqItems = [
     {
-      question: `${area.spot} の混雑通知は何分単位で更新されますか？`,
-      answer: `${area.spot} 周辺は公開情報と現地投稿をもとに、最短15分単位で再計算する前提の通知設計です。`,
+      question: `${area.spot} の駐車場は何台とめられますか？`,
+      answer: spotParkings.length > 0
+        ? spotParkings.map((parking) => `${parking.name}は${parking.capacity || '台数の記載なし'}（${parking.sourceLabel}）`).join('。') + '。詳しくはページ内の駐車場欄をご覧ください。'
+        : `${area.spot} の駐車場は、公式サイトでの確認が済んでいません。確認できしだい、収容台数と料金を出典つきで掲載します。`,
     },
     {
-      question: `${area.spot} の駐車場通知は何が分かりますか？`,
-      answer: `${area.parking} を中心に、推定待機時間、空き台数目安、周辺スポット情報の変化を一覧で確認できます。`,
+      question: `${area.spot} の駐車場は今すぐ停められますか？`,
+      answer: `満車かどうかのリアルタイム表示は行っていません。当ページでは、公式サイトで確認できた収容台数・料金・営業時間と、閉鎖や利用制限のお知らせを掲載しています。当日の空き状況は出典先や現地の案内でご確認ください。`,
     },
     {
       question: `${area.spot} ページでは何が見られますか？`,
-      answer: `混雑状況、駐車場の空き、近くで立ち寄れる飲食店やチケット情報をまとめて確認できます。`,
+      answer: `駐車場の収容台数、料金、営業時間、閉鎖や制限の情報を、出典と確認日つきで掲載しています。あわせて近隣スポットへのリンクもまとめています。`,
     },
   ]
 
@@ -210,17 +255,14 @@ for (const area of areaPages) {
 
   const cards = area.alerts.map((alert) => `
     <article class="alert-card">
-      <div class="card-top"><span>${escapeHtml(alert.category)}</span><strong>${alert.score}</strong></div>
+      <div class="card-top"><span>${escapeHtml(alert.category)}</span></div>
       <h2>${escapeHtml(alert.title)}</h2>
       <p>${escapeHtml(alert.summary)}</p>
       <ul>
         <li>最寄駅: ${escapeHtml(alert.station)}</li>
-        <li>駐車場: ${escapeHtml(alert.parking)}</li>
-        <li>推定待機: ${alert.waitMin}分</li>
-        <li>空き台数目安: ${alert.parkingVacancy}台</li>
         <li>参照: ${escapeHtml(alert.source)}</li>
       </ul>
-      <p class="meta">通知: ${escapeHtml(alert.channels.join(' / '))} / おすすめ情報: ${escapeHtml(alert.revenue)}</p>
+      <p class="meta">通知: ${escapeHtml(alert.channels.join(' / '))}</p>
     </article>`).join('')
 
   const faqHtml = faqItems.map((item) => `
@@ -241,10 +283,10 @@ for (const area of areaPages) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${escapeHtml(area.pref)} ${escapeHtml(area.spot)} の混雑・駐車場情報 | tourismparking.jp</title>
-    <meta name="description" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} 周辺の混雑、駐車場空き、周辺飲食、チケット情報をまとめた個別ページです。" />
+    <meta name="description" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} 周辺の駐車場について、収容台数・料金・営業時間を公式サイトの出典つきでまとめています。" />
     <link rel="canonical" href="${pageUrl}" />
     <meta property="og:title" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} の混雑・駐車場情報" />
-    <meta property="og:description" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} 周辺の混雑、駐車場空き、周辺飲食、チケット情報をまとめた個別ページです。" />
+    <meta property="og:description" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} 周辺の駐車場について、収容台数・料金・営業時間を公式サイトの出典つきでまとめています。" />
     <meta property="og:url" content="${pageUrl}" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Tourism Crowd Parking Alert" />
@@ -276,6 +318,15 @@ for (const area of areaPages) {
       a { color: #1f2320; }
       .home-link { display: inline-flex; margin-top: 12px; font-weight: 700; }
       .cta-link, .save-button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 14px; border-radius: 8px; background: #1f2320; color: #fff; text-decoration: none; border: 0; cursor: pointer; font: inherit; font-weight: 800; }
+      .parking-facts .parking-item { padding: 14px 0; border-bottom: 1px solid rgba(31, 35, 32, .1); }
+      .parking-facts .parking-item:last-of-type { border-bottom: 0; }
+      .parking-facts h3 { display: flex; align-items: center; gap: 10px; font-size: 16px; margin: 0 0 8px; }
+      .parking-status { font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: #e8efe9; color: #1f2320; }
+      .parking-item[data-status="closed"] .parking-status { background: #f4dcd6; color: #7a2f18; }
+      .parking-item[data-status="restricted"] .parking-status { background: #f6ecd2; color: #6b4a10; }
+      .parking-facts p { margin: 0 0 6px; font-size: 14px; }
+      .parking-facts b { color: #1f2320; }
+      .parking-source, .parking-caution { font-size: 12px; color: #716b61; }
       .related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .related-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; }
       .related-link span { color: #716b61; font-size: 13px; }
@@ -301,10 +352,11 @@ for (const area of areaPages) {
       </section>
       <section class="summary">
         <article><span>掲載中の情報</span><strong>${area.alerts.length}</strong></article>
-        <article><span>最高注目度</span><strong>${Math.max(...area.alerts.map((item) => item.score))}</strong></article>
-        <article><span>最短待機</span><strong>${Math.min(...area.alerts.map((item) => item.waitMin))}分</strong></article>
-        <article><span>最大空き台数</span><strong>${Math.max(...area.alerts.map((item) => item.parkingVacancy))}台</strong></article>
+        <article><span>最寄駅</span><strong>${escapeHtml(area.station)}</strong></article>
+        <article><span>駐車場の確認</span><strong>${spotParkings.length > 0 ? '公式で確認済み' : '確認中'}</strong></article>
+        <article><span>確認日</span><strong>${escapeHtml(parkingFacts.asOf)}</strong></article>
       </section>
+${parkingSection}
       <section class="section-box">
         <h2>同じ都道府県の関連エリア</h2>
         ${renderRouteList(relatedSamePref)}
@@ -313,8 +365,7 @@ for (const area of areaPages) {
         <h2>${escapeHtml(area.region)}エリアの関連スポット</h2>
         ${renderRouteList(relatedSameRegion)}
       </section>
-      ${renderRanking('同県内の注目度ランキング', nearbyTopScore, (item) => `${escapeHtml(item.area)} / 注目度 ${item.score} / 待機 ${item.waitMin}分`)}
-      ${renderRanking('同地域の待機時間ランキング', nearbyFastest, (item) => `${escapeHtml(item.area)} / 待機 ${item.waitMin}分 / 空き ${item.parkingVacancy}台`)}
+      ${verifiedNearbyHtml}
       <section class="alert-grid">${cards}
       </section>
       <section class="section-box">

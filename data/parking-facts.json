@@ -1,0 +1,123 @@
+{
+  "note": "各観光スポットの駐車場について、公式サイト（自治体・施設）で確認できた事実のみを記録する。推測で数値を書かない。確認できない場所は spots に載せず、ページ側では「確認中」と表示する。",
+  "asOf": "2026年8月18日 確認",
+  "spots": {
+    "浅草寺": {
+      "parkings": [
+        {
+          "name": "雷門地下駐車場（台東区営）",
+          "status": "closed",
+          "capacity": "普通車197台",
+          "note": "2025年11月26日に場内で車両火災が発生し、消防設備・照明設備・エレベーターが損傷したため閉鎖中です。再開の見通しは示されていません。訪れる際は周辺の民間駐車場をご利用ください。",
+          "sourceUrl": "https://www.city.taito.lg.jp/kenchiku/kotsu/carbikeparking/parking/asakusa/20251127.html",
+          "sourceLabel": "台東区 公式サイト"
+        }
+      ]
+    },
+    "名古屋城": {
+      "parkings": [
+        {
+          "name": "正門前駐車場",
+          "status": "open",
+          "capacity": "普通車308台",
+          "fee": "普通車は30分以内ごと250円、自動二輪車・原付は30分以内ごと150円、大型車は最初の1時間および以後30分以内ごと600円",
+          "hours": "午前8時45分〜午後9時30分",
+          "note": "利用できるのは1月2日から12月28日まで。大型車は午後6時から翌朝8時まで予約車が優先されます。",
+          "sourceUrl": "https://www.nagoyajo.city.nagoya.jp/access/",
+          "sourceLabel": "名古屋城 公式ウェブサイト"
+        }
+      ]
+    },
+    "松本城": {
+      "parkings": [
+        {
+          "name": "松本城大手門駐車場（立体）",
+          "status": "open",
+          "capacity": "437台",
+          "fee": "30分以内ごと150円",
+          "hours": "午前7時30分〜午後10時30分",
+          "sourceUrl": "https://www.city.matsumoto.nagano.jp/soshiki/75/5760.html",
+          "sourceLabel": "松本市 公式サイト"
+        },
+        {
+          "name": "松本城大手門駐車場（平面）",
+          "status": "open",
+          "capacity": "大型自動車12台、障がい者等用4台、自動二輪車15台",
+          "fee": "大型自動車は30分以内ごと370円",
+          "hours": "午前7時30分〜午後9時30分",
+          "sourceUrl": "https://www.city.matsumoto.nagano.jp/soshiki/75/5760.html",
+          "sourceLabel": "松本市 公式サイト"
+        }
+      ]
+    },
+    "大阪城": {
+      "parkings": [
+        {
+          "name": "森ノ宮駐車場",
+          "status": "open",
+          "capacity": "乗用車100台（ほかに身障者用2台）",
+          "fee": "8時〜22時は平日60分400円・土日祝60分500円、22時〜8時は60分200円",
+          "sourceUrl": "https://www.osakacastle.net/access/",
+          "sourceLabel": "大阪城天守閣 公式サイト"
+        },
+        {
+          "name": "大阪城公園駅前駐車場",
+          "status": "open",
+          "capacity": "乗用車171台",
+          "fee": "8時〜22時は平日60分400円・土日祝60分500円",
+          "sourceUrl": "https://www.osakacastle.net/access/",
+          "sourceLabel": "大阪城天守閣 公式サイト"
+        }
+      ]
+    },
+    "姫路城": {
+      "parkings": [
+        {
+          "name": "大手門駐車場",
+          "status": "open",
+          "capacity": "普通車約555台、大型45台",
+          "fee": "普通車は3時間以内600円、超えると1日900円。大型は1日1回2,500円",
+          "note": "姫路城にもっとも近い有料駐車場です。",
+          "sourceUrl": "https://www.city.himeji.lg.jp/faq/faq_detail.php?frmId=1014",
+          "sourceLabel": "姫路市 公式サイト"
+        }
+      ]
+    },
+    "清水寺": {
+      "parkings": [
+        {
+          "name": "京都市清水坂観光駐車場",
+          "status": "restricted",
+          "note": "京都市の混雑対策により、観光シーズンは自家用車の受け入れが制限され、観光バスは完全予約制となります。自家用車で向かう前に、京都市の最新の実施内容と満空情報を確認してください。",
+          "sourceUrl": "https://www.city.kyoto.lg.jp/kensetu/page/0000343111.html",
+          "sourceLabel": "京都市 公式サイト"
+        }
+      ]
+    },
+    "熊本城": {
+      "parkings": [
+        {
+          "name": "桜の馬場 城彩苑 駐車場",
+          "status": "open",
+          "fee": "2026年4月1日から、乗用車は2時間まで400円（以後1時間ごと200円）、バスは3時間まで1200円（以後1時間ごと400円）。18時から翌8時までの駐車は5,600円",
+          "note": "予約は不要で先着順です。熊本城に近い駐車場のため、行楽期は早い時間に埋まります。",
+          "sourceUrl": "https://www.sakuranobaba-johsaien.jp/usage_fees/",
+          "sourceLabel": "桜の馬場 城彩苑 公式サイト"
+        }
+      ]
+    },
+    "太宰府天満宮": {
+      "parkings": [
+        {
+          "name": "太宰府駐車センター",
+          "status": "open",
+          "capacity": "850台",
+          "fee": "普通車1回500円",
+          "note": "太宰府市は主な駐車場の満車・空車と混雑状況を「交通情報案内システム」で公開しています。出発前に確認できます。",
+          "sourceUrl": "https://www.city.dazaifu.lg.jp/soshiki/20/1988.html",
+          "sourceLabel": "太宰府市 公式サイト"
+        }
+      ]
+    }
+  }
+}
