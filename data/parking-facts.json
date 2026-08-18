@@ -1,6 +1,6 @@
 {
   "note": "各観光スポットの駐車場について、公式サイト（自治体・施設）で確認できた事実のみを記録する。推測で数値を書かない。確認できない場所は spots に載せず、ページ側では「確認中」と表示する。",
-  "asOf": "2026年8月18日 確認",
+  "asOf": "2026年8月18〜19日 確認",
   "spots": {
     "浅草寺": {
       "parkings": [
@@ -721,6 +721,276 @@
           "note": "大型バスは倉庫棟前の大型専用駐車場を使います。混雑して停められない場合は、いろは蔵パークの大型バス専用駐車場や日和山公園の第1・第2駐車場が案内されています。",
           "sourceUrl": "https://www.city.sakata.lg.jp/sangyo/kanko/rejyashisetsu/kanko20250210.html",
           "sourceLabel": "酒田市 公式サイト"
+        }
+      ]
+    },
+    "伊勢神宮 内宮": {
+      "parkings": [
+        {
+          "name": "内宮A1・A2駐車場",
+          "status": "open",
+          "capacity": "A1が49台、A2が155台",
+          "fee": "1時間まで無料。1〜2時間は7時〜17時の入庫で500円、2時間以降は30分ごと100円加算。バスは3,000円。17時〜翌7時に入庫すると400円引き（バスを除く）",
+          "hours": "A1は終日、A2は5時〜19時（出庫は終日可）",
+          "note": "内宮にはB1〜B6の駐車場もあり、B1・B2・B4・A4には障害者用のスペースがあります。伊勢市は「らくらく伊勢もうで」で満空情報を公開しています。",
+          "sourceUrl": "https://www.rakurakuise.jp/n_map_01.html",
+          "sourceLabel": "らくらく伊勢もうで（伊勢地域観光交通対策協議会）"
+        }
+      ]
+    },
+    "鳥羽水族館": {
+      "parkings": [
+        {
+          "name": "鳥羽水族館 駐車場（A・B・C）",
+          "status": "open",
+          "capacity": "A・B・C合わせて500台",
+          "fee": "乗用車1日1回1,000円（Cは500円）",
+          "note": "2025年4月1日に料金が改定されました。おもいやり駐車場が10か所あります。混雑期は臨時駐車場の案内が出ます。",
+          "sourceUrl": "https://aquarium.co.jp/eigyo/kuruma/",
+          "sourceLabel": "鳥羽水族館 公式サイト"
+        }
+      ]
+    },
+    "大通公園": {
+      "parkings": [
+        {
+          "name": "大通地下駐車場（さっぽろ地下街）",
+          "status": "open",
+          "capacity": "366台",
+          "fee": "最初の1時間460円、以後30分ごと230円",
+          "note": "営業時間外の出入庫と夜間の宿泊駐車はできません。車高2.1m・車幅2.1m・車長5.0mまでの制限があります。",
+          "sourceUrl": "https://www.sapporo-chikagai.jp/access/",
+          "sourceLabel": "さっぽろ地下街（札幌都市開発公社）"
+        }
+      ]
+    },
+    "上野恩賜公園": {
+      "parkings": [
+        {
+          "name": "上野恩賜公園 第一・第二駐車場（都立公園有料駐車場）",
+          "status": "open",
+          "hours": "第一は8時30分〜17時30分（入庫は16時30分まで）、第二は9時〜17時（入庫は16時まで）",
+          "note": "大型バスは都立公園の予約システムから予約します。低公害車の駐車料金割引カードの制度があります。問い合わせは上野恩賜公園管理所（03-3828-5644）。",
+          "sourceUrl": "https://www.tokyo-park.or.jp/park/ueno/facility/index.html",
+          "sourceLabel": "東京都公園協会 公式サイト"
+        }
+      ]
+    },
+    "門司港レトロ": {
+      "parkings": [
+        {
+          "name": "門司港レトロ西海岸有料駐車場",
+          "status": "open",
+          "capacity": "約100台",
+          "fee": "24時間500円",
+          "hours": "24時間",
+          "note": "門司港レトロパーキング（平日30分100円、土日祝20分100円、20時〜8時は最大700円）や、市営九州鉄道記念館西駐車場（約30台、7時〜22時、最初の1時間200円）もあります。",
+          "sourceUrl": "https://www.mojiko.info/about/parking.html",
+          "sourceLabel": "門司港レトロ 公式サイト（北九州市）"
+        }
+      ]
+    },
+    "吉野ヶ里歴史公園": {
+      "parkings": [
+        {
+          "name": "吉野ヶ里歴史公園 東口・北口駐車場",
+          "status": "open",
+          "capacity": "東口が小型車540台・大型車80台・二輪車30台、北口が普通車230台・大型車11台・二輪車10台",
+          "fee": "普通車310円、二輪車100円、大型車1,050円、マイクロバス310円。障害者手帳をお持ちの運転者は無料",
+          "note": "新西口の開業にともない、駐車場が期間限定で無料になる措置が実施されることがあります。",
+          "sourceUrl": "https://www.yoshinogari.jp/information/use/",
+          "sourceLabel": "吉野ヶ里歴史公園 公式サイト"
+        }
+      ]
+    },
+    "草千里ヶ浜": {
+      "parkings": [
+        {
+          "name": "草千里ヶ浜 駐車場",
+          "status": "open",
+          "fee": "500円（有料道路手前の駐車場と共通）",
+          "note": "火口へ向かう阿蘇山公園道路（山上有料道路）の通行料は普通車800円で別途必要です。ゴールデンウィークには無料の臨時駐車場が開設されることがあります。",
+          "sourceUrl": "https://www.city.aso.kumamoto.jp/tourism/spot/park_road_fee/",
+          "sourceLabel": "阿蘇市 公式サイト"
+        }
+      ]
+    },
+    "青島神社": {
+      "parkings": [
+        {
+          "name": "青島参道南広場駐車場（宮崎市営）",
+          "status": "open",
+          "fee": "普通車500円",
+          "note": "拡張にともなって有料化されました。参道入口の民間駐車場は普通車500円、大型バス1,000円が目安です。青島駅の市営駐車場は17時まで無料で利用できます。",
+          "sourceUrl": "https://www.city.miyazaki.miyazaki.jp/city/policy/tourism/401103.html",
+          "sourceLabel": "宮崎市 公式サイト"
+        }
+      ]
+    },
+    "霧島神宮": {
+      "parkings": [
+        {
+          "name": "霧島神宮 駐車場",
+          "status": "open",
+          "capacity": "500台",
+          "hours": "8時〜17時（定休日なし）",
+          "note": "料金は公式サイトに記載がありません。問い合わせは0995-57-0001。",
+          "sourceUrl": "https://kirishimajingu.or.jp/access/",
+          "sourceLabel": "霧島神宮 公式サイト"
+        }
+      ]
+    },
+    "川平湾": {
+      "parkings": [
+        {
+          "name": "川平第1・第2駐車場（石垣市営）",
+          "status": "open",
+          "capacity": "第1が普通車46台・大型バス6台、第2が普通車32台",
+          "fee": "最初の1時間まで200円、以後1時間ごと100円（駐車券を紛失した場合は1,900円）",
+          "hours": "24時間入出庫可",
+          "note": "支払いは電子決済のみで、現金は使えません。災害や機器の故障で予告なく休業することがあります。",
+          "sourceUrl": "https://www.city.ishigaki.okinawa.jp/soshiki/shisetsu_kanri/oshirase/kabira.html",
+          "sourceLabel": "石垣市 公式サイト"
+        }
+      ]
+    },
+    "蕪島": {
+      "parkings": [
+        {
+          "name": "蕪島駐車場（八戸市）",
+          "status": "open",
+          "fee": "無料",
+          "note": "蕪島休憩所のそばには駐車場がないため、蕪島駐車場などの無料駐車場を使います。イベント開催時はマリエント駐車場や蕪島臨時駐車場（八戸港観光遊覧船乗り場の向かい）が案内されます。",
+          "sourceUrl": "https://www.city.hachinohe.aomori.jp/soshikikarasagasu/kankoka/16183.html",
+          "sourceLabel": "八戸市 公式サイト"
+        }
+      ]
+    },
+    "寒風山": {
+      "parkings": [
+        {
+          "name": "寒風山回転展望台 駐車場",
+          "status": "open",
+          "note": "展望台の少し下に大きな駐車場があります。展望台入口のロータリー周辺には、歩くのが難しい方向けの駐車スペースが少しあります。展望台の入館は有料です。",
+          "sourceUrl": "https://oganavi.com/spot/77/",
+          "sourceLabel": "男鹿なび（男鹿市観光協会）"
+        }
+      ]
+    },
+    "気比の松原": {
+      "parkings": [
+        {
+          "name": "気比の松原 駐車場",
+          "status": "open",
+          "capacity": "700台",
+          "fee": "海水浴場の開設期間は乗用車が平日1,000円、土日祝とお盆は2,000円。マイクロバス2,000円、大型バス3,000円",
+          "note": "花火大会の日は予約制の専用駐車場になります。",
+          "sourceUrl": "https://tsuruga-kanko.jp/spot/nature/kehinomatsubara-beach/",
+          "sourceLabel": "敦賀観光協会 公式サイト"
+        }
+      ]
+    },
+    "浜名湖ガーデンパーク": {
+      "parkings": [
+        {
+          "name": "浜名湖ガーデンパーク 駐車場",
+          "status": "open",
+          "fee": "普通乗用車500円",
+          "note": "団体バス用の駐車場が10台分あります。問い合わせは053-488-1500。",
+          "sourceUrl": "https://hamanako-gardenpark.jp/access/parking.php",
+          "sourceLabel": "浜名湖ガーデンパーク 公式サイト"
+        }
+      ]
+    },
+    "ひろめ市場": {
+      "parkings": [
+        {
+          "name": "ひろめ市場 駐車場（2階・3階）",
+          "status": "open",
+          "capacity": "180台（車椅子用4台）",
+          "hours": "24時間",
+          "note": "高さ制限は2.2mで、バイクなどの二輪車は駐車できません。近くには高知市営の県庁前通り地下駐車場もあります。",
+          "sourceUrl": "https://hirome.co.jp/access.html",
+          "sourceLabel": "ひろめ市場 公式サイト"
+        }
+      ]
+    },
+    "赤城山": {
+      "parkings": [
+        {
+          "name": "おのこ駐車場（赤城大沼）",
+          "status": "open",
+          "note": "大沼のほとりにある駐車場で、公衆トイレは冬期も開いています。山頂エリアの積雪や路面状況は前橋市の観光サイトで告知されます。冬はタイヤの装備が必要です。",
+          "sourceUrl": "https://www.maebashi-cvb.com/spot/1085",
+          "sourceLabel": "前橋観光コンベンション協会 公式サイト"
+        }
+      ]
+    },
+    "蔵王温泉": {
+      "parkings": [
+        {
+          "name": "蔵王温泉大露天風呂 利用者専用駐車場",
+          "status": "open",
+          "capacity": "60台",
+          "note": "大露天風呂は冬期に閉鎖されます。共同浴場には専用の駐車場がありません。近くの新左衛門の湯には65台の駐車場があります。",
+          "sourceUrl": "https://yamagatakanko.com/attractions/detail_2764.html",
+          "sourceLabel": "山形県公式観光サイト やまがたへの旅"
+        }
+      ]
+    },
+    "上杉神社": {
+      "parkings": [
+        {
+          "name": "松が岬公園周辺の駐車場",
+          "status": "open",
+          "note": "上杉神社は松岬公園の中にあります。米沢上杉まつりの期間は市内で交通規制が行われ、申し込み制の有料駐車場とシャトルバスが運行されます。",
+          "sourceUrl": "https://www.city.yonezawa.yamagata.jp/soshiki/18/2/5/5/271.html",
+          "sourceLabel": "米沢市 公式サイト"
+        }
+      ]
+    },
+    "御殿場海岸": {
+      "parkings": [
+        {
+          "name": "御殿場海岸の駐車場",
+          "status": "open",
+          "capacity": "市の駐車場が約300台（無料）、海の家の駐車場が約1,500台（有料）",
+          "note": "市の無料駐車場は開放日が限られており、潮干狩りの好適日はすぐに満車になります。ゴールデンウィークや土日は朝5時ごろから車が並び始め、9時ごろには周辺が渋滞します。",
+          "sourceUrl": "https://tsukanko.jp/feature/feature-5804/",
+          "sourceLabel": "津市観光協会 公式サイト"
+        }
+      ]
+    },
+    "道頓堀": {
+      "parkings": [
+        {
+          "name": "道頓堀周辺の駐車場",
+          "status": "open",
+          "note": "周辺には長堀通地下駐車場などの市立駐車場があり、大阪市駐車場マップで探せます。市立駐車場では共通回数券（プリペイドカード）が使えます。観光バスの乗降は日本橋観光バス乗降スペースかOCAT観光バス乗降場を使うよう案内されています。",
+          "sourceUrl": "https://www.city.osaka.lg.jp/toshikeikaku/page/0000005885.html",
+          "sourceLabel": "大阪市 公式サイト（駐車場マップ）"
+        }
+      ]
+    },
+    "磐梯熱海温泉": {
+      "parkings": [
+        {
+          "name": "磐梯熱海温泉の駐車場",
+          "status": "open",
+          "note": "温泉街には統一の観光駐車場がなく、旅館や日帰り温泉施設ごとに駐車場があります。共同湯「霊泉」元湯はJR磐梯熱海駅から徒歩1分です。利用する施設の駐車場を事前に確認してください。",
+          "sourceUrl": "https://www.bandaiatami.or.jp/day-stay/",
+          "sourceLabel": "磐梯熱海温泉観光協会 公式サイト"
+        }
+      ]
+    },
+    "湯の坪街道": {
+      "parkings": [
+        {
+          "name": "湯の坪街道周辺の駐車場",
+          "status": "open",
+          "note": "街道沿いに公営の観光駐車場はなく、周辺の有料駐車場を利用します。辻馬車や電動カートの利用者も近隣の有料駐車場を使うよう案内されています。由布市ツーリストインフォメーションセンター（0977-84-2446）で当日の状況を確認できます。",
+          "sourceUrl": "https://yufuin.gr.jp/spot/spot-1277/",
+          "sourceLabel": "YUFUINFO（由布市観光協会）"
         }
       ]
     }
