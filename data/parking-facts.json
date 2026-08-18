@@ -533,6 +533,196 @@
           "sourceLabel": "仙北市 公式サイト"
         }
       ]
+    },
+    "奈良公園": {
+      "parkings": [
+        {
+          "name": "登大路自動車駐車場（奈良県営）",
+          "status": "open",
+          "hours": "6時〜22時（出庫は24時間可）",
+          "fee": "令和6年7月1日改定。平日（県庁開庁日）は1時間まで無料、以後60分ごと500円で当日最大1,500円。休日は入庫時1,000円、以後60分ごと500円で当日最大2,000円",
+          "note": "県庁の来庁者と共用の駐車場です。予約センター（0742-81-8920）で問い合わせできます。",
+          "sourceUrl": "https://www.pref.nara.lg.jp/site/park/1007.html",
+          "sourceLabel": "奈良県 奈良公園クイックガイド"
+        }
+      ]
+    },
+    "彦根城": {
+      "parkings": [
+        {
+          "name": "彦根市観光駐車場（二の丸駐車場）",
+          "status": "open",
+          "fee": "1日2,000円",
+          "note": "周辺にはいろは松駐車場（20台）、京橋口駐車場（15台）などもあります。",
+          "sourceUrl": "https://www.hikoneshi.com/access/parking",
+          "sourceLabel": "彦根観光協会 公式サイト"
+        }
+      ]
+    },
+    "東尋坊": {
+      "parkings": [
+        {
+          "name": "東尋坊 市営駐車場",
+          "status": "closed",
+          "capacity": "169台（閉鎖前）",
+          "note": "東尋坊の再整備工事のため、令和5年7月1日から閉鎖されています。周辺の民間駐車場を利用するよう案内されています。民間駐車場は運営者ごとに料金が異なります。",
+          "sourceUrl": "https://www.city.fukui-sakai.lg.jp/kankou/kanko-bunka/kanko/shizen/tojinbo.html",
+          "sourceLabel": "坂井市 公式サイト"
+        }
+      ]
+    },
+    "ハーバーランド": {
+      "parkings": [
+        {
+          "name": "神戸ハーバーランド umie 立体・地下駐車場",
+          "status": "open",
+          "fee": "終日30分ごと200円",
+          "note": "平日は最大7時間無料。umieアプリの提示で1時間、対象店舗で2,000円以上の買い物で1時間、映画鑑賞で2時間が追加で無料になります。",
+          "sourceUrl": "https://harborland.co.jp/parking/",
+          "sourceLabel": "神戸ハーバーランド 公式サイト"
+        }
+      ]
+    },
+    "アドベンチャーワールド": {
+      "parkings": [
+        {
+          "name": "アドベンチャーワールド 駐車場",
+          "status": "open",
+          "fee": "軽自動車・普通車1,200円、大型車2,000円、二輪車は無料",
+          "note": "2025年7月1日から駐車料金の支払い方法が変わりました。電気自動車用の充電器が計9基あります。",
+          "sourceUrl": "https://www.aws-s.com/guide/access/",
+          "sourceLabel": "アドベンチャーワールド 公式サイト"
+        }
+      ]
+    },
+    "渡月橋": {
+      "parkings": [
+        {
+          "name": "京都市嵐山観光駐車場",
+          "status": "restricted",
+          "note": "観光シーズンには京都市の混雑対策として特別駐車料金が適用されます。京都市は観光駐車場の満空情報を公開しているので、出発前に確認できます。管理は京都市都市整備公社です。",
+          "sourceUrl": "https://www.city.kyoto.lg.jp/kensetu/page/0000326231.html",
+          "sourceLabel": "京都市 公式サイト"
+        }
+      ]
+    },
+    "海地獄": {
+      "parkings": [
+        {
+          "name": "海地獄 駐車場",
+          "status": "open",
+          "fee": "無料",
+          "note": "隣接する鉄輪地獄地帯公園にも駐車場があり、展望公園エリアは88台、小倉エリアは207台で、普通車は1時間100円（24時間最大500円）です。",
+          "sourceUrl": "https://www.umijigoku.co.jp/fee/",
+          "sourceLabel": "海地獄 公式サイト"
+        }
+      ]
+    },
+    "仙巌園": {
+      "parkings": [
+        {
+          "name": "仙巌園 駐車場",
+          "status": "open",
+          "note": "有料駐車場です。夜間に駐車して翌朝8時以降に出庫する場合は2,000円が追加されます。団体バスは25台まで駐車でき、1日1,000円です。ゴールデンウィークは交通手段と駐車場の案内が別途出ます。",
+          "sourceUrl": "https://www.senganen.jp/access/",
+          "sourceLabel": "仙巌園 公式サイト"
+        }
+      ]
+    },
+    "鶴岡八幡宮": {
+      "parkings": [
+        {
+          "name": "鶴岡八幡宮 参拝者駐車場",
+          "status": "open",
+          "hours": "9時〜17時",
+          "fee": "最初の1時間まで2,000円。ご祈祷を受ける方（普通車）は2時間まで無料",
+          "note": "大型バスは予約制です。第2・第3駐車場では機器の入替え工事が告知されることがあります。問い合わせは0467-22-0325（9時〜16時）。",
+          "sourceUrl": "https://www.hachimangu.or.jp/access/",
+          "sourceLabel": "鶴岡八幡宮 公式サイト"
+        }
+      ]
+    },
+    "大谷資料館": {
+      "parkings": [
+        {
+          "name": "大谷資料館 第一・第二駐車場",
+          "status": "open",
+          "capacity": "第一が普通車35台・バス2台、第二が普通車200台（全体では普通車350台、大型専用2台）",
+          "note": "第二駐車場から入口までは徒歩約3分です。ゴールデンウィークやお盆の混雑時には臨時駐車場の案内が出ます。",
+          "sourceUrl": "https://www.oya909.co.jp/access/",
+          "sourceLabel": "大谷資料館 公式サイト"
+        }
+      ]
+    },
+    "アクアマリンふくしま": {
+      "parkings": [
+        {
+          "name": "アクアマリンパーク 駐車場",
+          "status": "open",
+          "capacity": "約1,600台（大型バスも可）",
+          "note": "周辺の商業施設と共用の駐車場です。体の不自由な方などの優先駐車場が27台、子育て応援駐車場が5台あります。",
+          "sourceUrl": "https://www.aquamarine.or.jp/guide/access/",
+          "sourceLabel": "アクアマリンふくしま 公式サイト"
+        }
+      ]
+    },
+    "昇仙峡": {
+      "parkings": [
+        {
+          "name": "昇仙峡の駐車場（天神森・県営グリーンライン）",
+          "status": "open",
+          "fee": "通常は無料。グリーンラインの県営駐車場は季節により有料になることがあります",
+          "note": "各店舗の駐車場も利用できますが、掲示されている利用条件の確認が必要です。昇仙峡観光協会は駐車場の利用トラブルについて注意を呼びかけています。",
+          "sourceUrl": "https://www.shosenkyo-kankoukyokai.com/parking.html",
+          "sourceLabel": "昇仙峡観光協会 公式サイト"
+        }
+      ]
+    },
+    "大石公園": {
+      "parkings": [
+        {
+          "name": "大石公園（河口湖自然生活館）駐車場",
+          "status": "open",
+          "fee": "無料",
+          "note": "河口湖の北岸にあり、湖ごしに富士山を望めます。隣接する富士大石ハナテラスにも駐車場があります。",
+          "sourceUrl": "https://fujisan.ne.jp/sightseeing/1652/",
+          "sourceLabel": "富士河口湖町観光連盟 公式サイト"
+        }
+      ]
+    },
+    "熱海サンビーチ": {
+      "parkings": [
+        {
+          "name": "熱海市営駐車場",
+          "status": "open",
+          "note": "市内10か所に市営駐車場があり、サンビーチの後方に東駐車場管理事務所があります。回数券やプリペイドカードが割安に売られています。2026年4月10日から12月28日まで、旧熱海港駐車場が臨時駐車場（163台）として開設されています。",
+          "sourceUrl": "https://www.city.atami.lg.jp/shisetsu/bunka/1002077/index.html",
+          "sourceLabel": "熱海市 公式サイト"
+        }
+      ]
+    },
+    "盛岡城跡公園": {
+      "parkings": [
+        {
+          "name": "盛岡城跡公園地下駐車場（岩手公園地下駐車場・市営）",
+          "status": "open",
+          "fee": "8時〜18時は30分ごと150円、18時〜22時は1時間ごと150円、22時〜翌8時は1時間ごと80円。上限は8時〜18時が1,100円、18時〜翌8時が800円",
+          "note": "定期駐車もあります（全日は月21,000円）。問い合わせは019-651-5019。",
+          "sourceUrl": "https://www.city.morioka.iwate.jp/kurashi/douro_kotsu/shieipark/1001845.html",
+          "sourceLabel": "盛岡市 公式サイト"
+        }
+      ]
+    },
+    "山居倉庫": {
+      "parkings": [
+        {
+          "name": "山居倉庫 周辺の駐車場",
+          "status": "open",
+          "note": "大型バスは倉庫棟前の大型専用駐車場を使います。混雑して停められない場合は、いろは蔵パークの大型バス専用駐車場や日和山公園の第1・第2駐車場が案内されています。",
+          "sourceUrl": "https://www.city.sakata.lg.jp/sangyo/kanko/rejyashisetsu/kanko20250210.html",
+          "sourceLabel": "酒田市 公式サイト"
+        }
+      ]
     }
   }
 }
