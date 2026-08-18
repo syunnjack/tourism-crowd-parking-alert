@@ -9,6 +9,10 @@
     <meta property="og:title" content="Tourism Crowd Parking Alert" />
     <meta property="og:description" content="観光前に、混雑状況や駐車場の空き、近くの飲食店やチケット情報をまとめて確認できるサービスです。" />
     <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://tourismparking.jp/" />
+    <meta property="og:url" content="https://tourismparking.jp/" />
+    <meta property="og:site_name" content="Tourism Crowd Parking Alert" />
+    <meta property="og:locale" content="ja_JP" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Tourism Crowd Parking Alert","url":"https://tourismparking.jp","applicationCategory":"NotificationApplication","description":"観光前に、混雑状況や駐車場の空き、近くの飲食店やチケット情報をまとめて確認できるサービスです。"}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"通知を見ると何が分かりますか？","acceptedAnswer":{"@type":"Answer","text":"混雑状況、駐車場の空き、近くで立ち寄れる飲食店やチケット情報を、条件に合わせてまとめて確認できます。"}},{"@type":"Question","name":"LINE・X・メール・Slackの使い分けは？","acceptedAnswer":{"@type":"Answer","text":"LINEは個人の即時通知、Xは拡散、メールは週次まとめ、Slackは店舗や法人運用向けです。"}},{"@type":"Question","name":"エリア別ページでは何が見られますか？","acceptedAnswer":{"@type":"Answer","text":"地域ごとの混雑、駐車場、周辺スポット情報をまとめて見比べやすくしています。"}}]}</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Q3GCX599W"></script>
@@ -21,6 +25,16 @@
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      このページは JavaScript で描画するため、HTMLには本文が入らない。
+      JavaScript を実行しない相手（一部のクローラーや読み上げ環境）にも
+      サイトの内容と、78ページのエリア情報への入口が伝わるようにしておく。
+    -->
+    <noscript>
+      <h1>Tourism Crowd Parking Alert</h1>
+      <p>観光前に、混雑状況や駐車場の空き、近くの飲食店やチケット情報をまとめて確認できるサービスです。</p>
+      <p><a href="/areas/">観光スポット別の混雑・駐車場情報の一覧を見る</a></p>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

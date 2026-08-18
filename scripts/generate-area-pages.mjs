@@ -231,6 +231,9 @@ for (const area of areaPages) {
 
   const saveIds = area.alerts.map((item) => item.id)
   const appUrl = `https://tourismparking.jp/?q=${encodeURIComponent(area.spot)}&pref=${encodeURIComponent(area.pref)}`
+  // sitemap と同じ形（encodeURI）で書く。canonical と sitemap がずれると、
+  // どちらを正規と見なすか検索エンジンが判断できなくなる。
+  const pageUrl = encodeURI(`https://tourismparking.jp${area.path}`)
 
   const html = `<!doctype html>
 <html lang="ja">
@@ -239,6 +242,13 @@ for (const area of areaPages) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${escapeHtml(area.pref)} ${escapeHtml(area.spot)} の混雑・駐車場情報 | tourismparking.jp</title>
     <meta name="description" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} 周辺の混雑、駐車場空き、周辺飲食、チケット情報をまとめた個別ページです。" />
+    <link rel="canonical" href="${pageUrl}" />
+    <meta property="og:title" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} の混雑・駐車場情報" />
+    <meta property="og:description" content="${escapeHtml(area.pref)} ${escapeHtml(area.spot)} 周辺の混雑、駐車場空き、周辺飲食、チケット情報をまとめた個別ページです。" />
+    <meta property="og:url" content="${pageUrl}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tourism Crowd Parking Alert" />
+    <meta property="og:locale" content="ja_JP" />
     <script type="application/ld+json">${JSON.stringify(collectionJsonLd)}</script>
     <script type="application/ld+json">${JSON.stringify(breadcrumbJsonLd)}</script>
     <script type="application/ld+json">${JSON.stringify(faqJsonLd)}</script>
@@ -286,7 +296,8 @@ for (const area of areaPages) {
           <a class="cta-link" href="${appUrl}">この条件で見る</a>
           <button class="save-button" type="button" data-save-ids='${JSON.stringify(saveIds)}'>このエリアを保存する</button>
         </div>
-        <a class="home-link" href="../../../../">一覧へ戻る</a>
+        <a class="home-link" href="/areas/">すべてのエリア一覧を見る</a>
+        <a class="home-link" href="/">トップへ戻る</a>
       </section>
       <section class="summary">
         <article><span>掲載中の情報</span><strong>${area.alerts.length}</strong></article>
@@ -332,9 +343,90 @@ for (const area of areaPages) {
   writeFileSync(resolve(outputDir, 'index.html'), html)
 }
 
+// エリア一覧ページ。これまで78ページへの入口が無く、各ページの「一覧へ戻る」も
+// トップ（JavaScriptで描画するアプリ）に飛ぶだけだった。検索エンジンにとっては
+// 78ページが孤立している状態なので、静的な一覧を1枚作って入口にする。
+const areasIndexUrl = 'https://tourismparking.jp/areas/'
+const groupedByRegion = areaPages.reduce((acc, area) => {
+  const region = area.region
+  acc[region] = acc[region] ?? {}
+  acc[region][area.pref] = acc[region][area.pref] ?? []
+  acc[region][area.pref].push(area)
+  return acc
+}, {})
+
+const areasIndexJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: '観光スポット別の混雑・駐車場情報 一覧',
+  url: areasIndexUrl,
+  description: `全国${areaPages.length}か所の観光スポットについて、混雑・駐車場・周辺情報をまとめたページの一覧です。`,
+}
+
+const areasIndexHtml = `<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>観光スポット別 混雑・駐車場情報の一覧 | tourismparking.jp</title>
+    <meta name="description" content="全国${areaPages.length}か所の観光スポットについて、混雑状況や駐車場の空き、周辺情報をまとめたページの一覧です。地方・都道府県から探せます。" />
+    <link rel="canonical" href="${areasIndexUrl}" />
+    <meta property="og:title" content="観光スポット別 混雑・駐車場情報の一覧" />
+    <meta property="og:description" content="全国${areaPages.length}か所の観光スポットの混雑・駐車場情報をまとめた一覧です。" />
+    <meta property="og:url" content="${areasIndexUrl}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tourism Crowd Parking Alert" />
+    <meta property="og:locale" content="ja_JP" />
+    <script type="application/ld+json">${JSON.stringify(areasIndexJsonLd)}</script>
+    <style>
+      :root { color: #1f2320; background: #f4f1ea; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, "Yu Gothic", Meiryo, sans-serif; background: #f4f1ea; color: #1f2320; }
+      main { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 52px; }
+      .hero, .section-box { border: 1px solid rgba(31, 35, 32, .13); border-radius: 10px; background: #fff; box-shadow: 0 18px 44px rgba(42, 36, 28, .08); padding: 24px; }
+      .section-box { margin-top: 18px; padding: 18px; }
+      .eyebrow { margin: 0; color: #79502c; font-size: 13px; font-weight: 800; text-transform: uppercase; }
+      h1 { margin: 8px 0 14px; font-size: clamp(30px, 4.5vw, 48px); line-height: 1.1; }
+      h2 { margin: 0 0 12px; font-size: 20px; }
+      h3 { margin: 16px 0 8px; font-size: 15px; color: #5c5a52; }
+      p, li { line-height: 1.75; color: #5c5a52; }
+      .area-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+      .area-link { display: grid; gap: 4px; padding: 14px; border-radius: 8px; background: #f4f1ea; text-decoration: none; color: #1f2320; }
+      .area-link strong { font-size: 15px; }
+      .area-link span { font-size: 12px; color: #716b61; }
+      .home-link { display: inline-flex; margin-top: 12px; font-weight: 700; color: #1f2320; }
+      @media (max-width: 640px) { .area-grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">AREA INDEX</p>
+        <h1>観光スポット別の混雑・駐車場情報</h1>
+        <p>全国${areaPages.length}か所の観光スポットについて、混雑の傾向、駐車場の空き、周辺の立ち寄り先をまとめています。地方と都道府県から探せます。</p>
+        <a class="home-link" href="/">トップへ戻る</a>
+      </section>
+${Object.entries(groupedByRegion).map(([region, prefs]) => `      <section class="section-box">
+        <h2>${escapeHtml(region)}</h2>
+${Object.entries(prefs).map(([pref, items]) => `        <h3>${escapeHtml(pref)}</h3>
+        <div class="area-grid">${items.map((item) => `
+          <a class="area-link" href="${encodeURI(item.path)}">
+            <strong>${escapeHtml(item.spot)}</strong>
+            <span>${escapeHtml(item.area)} / 最寄: ${escapeHtml(item.station)}</span>
+          </a>`).join('')}
+        </div>`).join('')}
+      </section>`).join('')}
+    </main>
+  </body>
+</html>`
+
+mkdirSync(areasDir, { recursive: true })
+writeFileSync(resolve(areasDir, 'index.html'), areasIndexHtml)
+
 const coreSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://tourismparking.jp/</loc><priority>1.0</priority></url>
+  <url><loc>https://tourismparking.jp/areas/</loc><priority>0.9</priority></url>
 </urlset>
 `
 
