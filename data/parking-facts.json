@@ -329,6 +329,210 @@
           "sourceLabel": "松島観光協会 公式サイト"
         }
       ]
+    },
+    "鶴ヶ城": {
+      "parkings": [
+        {
+          "name": "西出丸駐車場",
+          "status": "open",
+          "capacity": "普通車200台",
+          "fee": "最初の1時間200円、以後1時間ごと100円",
+          "note": "観桜期やゴールデンウィークには臨時駐車場が開設され、周辺で交通規制が行われることがあります。",
+          "sourceUrl": "https://www.tsurugajo.com/tsurugajo/summary/",
+          "sourceLabel": "会津若松観光ビューロー 公式サイト"
+        }
+      ]
+    },
+    "偕楽園": {
+      "parkings": [
+        {
+          "name": "桜山第一駐車場",
+          "status": "open",
+          "capacity": "普通車270台、障害者用4台",
+          "note": "桜山は第二（149台）、第三（66台）もあります。ほかに偕楽園下駐車場140台、常磐神社駐車場70台、千波湖西駐車場178台、桜川駐車場295台。梅まつり期間は利用できる駐車場と入口が変わります。",
+          "sourceUrl": "https://ibaraki-kairakuen.jp/access/",
+          "sourceLabel": "偕楽園 公式サイト"
+        }
+      ]
+    },
+    "国営ひたち海浜公園": {
+      "parkings": [
+        {
+          "name": "西駐車場",
+          "status": "open",
+          "capacity": "2,000台",
+          "fee": "1日につき普通車600円、二輪車300円、大型車1,800円",
+          "note": "スイセンガーデン、たまごの森、みはらしの丘へ行くのに便利な駐車場です。公園は混雑・利用状況をサイトで公開しています。",
+          "sourceUrl": "https://www.hitachikaihin.jp/access/route-guide.html",
+          "sourceLabel": "国営ひたち海浜公園 公式サイト"
+        }
+      ]
+    },
+    "湯畑": {
+      "parkings": [
+        {
+          "name": "湯畑観光駐車場",
+          "status": "open",
+          "capacity": "180台",
+          "fee": "2時間まで700円（2026年6月1日改定）",
+          "hours": "24時間（機械式）",
+          "note": "天狗山第4駐車場（160台・無料・8時30分〜17時）や温泉門駐車場（101台・無料）もあります。草津温泉観光協会は道路と駐車場のライブカメラを公開しています。",
+          "sourceUrl": "https://www.kusatsu-onsen.ne.jp/access/car.php",
+          "sourceLabel": "草津温泉観光協会 公式サイト"
+        }
+      ]
+    },
+    "荻町合掌造り集落": {
+      "parkings": [
+        {
+          "name": "せせらぎ公園駐車場（白川村営）",
+          "status": "open",
+          "fee": "普通車1,000円、二輪車200円",
+          "hours": "8時〜17時（最終入庫16時30分）",
+          "note": "世界遺産の集落とは川をはさんだ対岸にあります。個人の車は予約不要ですが、バスは予約サイトからの事前予約制です。集落内へは9時〜16時の観光車両の進入が控えるよう求められています。",
+          "sourceUrl": "https://www.vill.shirakawa.lg.jp/1157.htm",
+          "sourceLabel": "白川村役場 公式サイト"
+        }
+      ]
+    },
+    "犬山城": {
+      "parkings": [
+        {
+          "name": "犬山城第1駐車場（市営）",
+          "status": "open",
+          "capacity": "140台（大型10台）",
+          "fee": "通常は普通車1時間300円・当日最大1,800円。特定日は1時間500円・最大3,000円",
+          "note": "犬山市武道館の北側で、犬山城まで徒歩約5分です。犬山観光ナビが城下町駐車場の混雑状況を公開しています。",
+          "sourceUrl": "https://inuyama.gr.jp/access/parking/",
+          "sourceLabel": "犬山観光ナビ 公式サイト"
+        }
+      ]
+    },
+    "古い町並": {
+      "parkings": [
+        {
+          "name": "高山市の市営駐車場（市街地周辺）",
+          "status": "open",
+          "note": "古い町並の周辺には、広小路・神明・弥生橋・えび坂・不動橋・天満・高山駅西・空町の市営駐車場があります。夜間（20時〜8時）は1時間ごと50円です。高山市は市営駐車場の満車・空車情報をリアルタイムで公開しています。",
+          "sourceUrl": "https://www.city.takayama.lg.jp/shisetsu/1004139/1000035/index.html",
+          "sourceLabel": "高山市 公式サイト"
+        }
+      ]
+    },
+    "道後温泉": {
+      "parkings": [
+        {
+          "name": "道後温泉駐車場（冠山・松山市営）",
+          "status": "open",
+          "capacity": "100台",
+          "fee": "30分100円、泊まり（20時30分〜翌8時30分）720円",
+          "hours": "5時30分〜23時30分",
+          "note": "本館・椿の湯・飛鳥乃湯泉を利用して認証機に駐車券を通すと、最初の1時間が無料になります。約400m先の祝谷東町駐車場（43台・24時間・30分100円）も市営です。",
+          "sourceUrl": "https://www.city.matsuyama.ehime.jp/kanko/kankoguide/kankomeisho/dogoonsen/parking/chushajo.html",
+          "sourceLabel": "松山市 公式サイト"
+        }
+      ]
+    },
+    "宮島": {
+      "parkings": [
+        {
+          "name": "宮島口周辺の駐車場",
+          "status": "open",
+          "note": "宮島口旅客ターミナル駐車場は24時間利用でき、定期利用の枠もあります。廿日市市は令和8年7月1日から中型・大型自動車の駐車料金を見直しました。市は宮島口の渋滞対策と駐車場マップを公開しています。",
+          "sourceUrl": "https://www.city.hatsukaichi.hiroshima.jp/soshiki/41/98302.html",
+          "sourceLabel": "廿日市市 公式サイト"
+        }
+      ]
+    },
+    "倉敷美観地区": {
+      "parkings": [
+        {
+          "name": "倉敷市営駐車場（美観地区周辺）",
+          "status": "open",
+          "note": "市営中央駐車場と市営美観地区南駐車場は土日祝に大変混み合います。倉敷市と倉敷観光WEBが市営・民間それぞれの満空情報を公開しているので、出発前に確認できます。",
+          "sourceUrl": "https://www.kurashiki-tabi.jp/info/about-parking-infos-on-bikan-district/",
+          "sourceLabel": "倉敷観光WEB（倉敷観光コンベンションビューロー）"
+        }
+      ]
+    },
+    "首里城公園": {
+      "parkings": [
+        {
+          "name": "県営首里城公園駐車場（首里杜館 地下）",
+          "status": "open",
+          "capacity": "50〜116台（季節やバスの駐車状況で調整）",
+          "fee": "令和6年7月1日改定。小型車は1時間30分で600円、3時間で800円。大型車は1時間30分で1,800円、3時間で2,400円",
+          "hours": "7月〜11月は有料区域が8時30分〜19時",
+          "note": "駐車は3時間以内が原則です。バスは予約制です。",
+          "sourceUrl": "https://oki-park.jp/shurijo/access/192/",
+          "sourceLabel": "首里城公園 公式サイト"
+        }
+      ]
+    },
+    "万座毛": {
+      "parkings": [
+        {
+          "name": "万座毛 第一・第二駐車場",
+          "status": "open",
+          "capacity": "第一が乗用車97台・バス13台・二輪車9台、第二が乗用車218台・二輪車15台",
+          "fee": "無料",
+          "hours": "3月〜10月は8時〜20時、11月〜2月は8時〜19時（見学は日没まで）",
+          "note": "年中無休ですが、台風などの荒天時は休館することがあります。",
+          "sourceUrl": "https://www.manzamo.jp/manzamou.php",
+          "sourceLabel": "万座毛周辺活性化施設 公式サイト"
+        }
+      ]
+    },
+    "グラバー園": {
+      "parkings": [
+        {
+          "name": "松が枝町第2駐車場（長崎市営）",
+          "status": "open",
+          "capacity": "普通車98台、バス11台、二輪車17台",
+          "fee": "1時間30分を超えると終日200円の定額。複数日にまたがる場合は日数分",
+          "note": "グラバー園に専用駐車場はないため、近隣の駐車場を使います。",
+          "sourceUrl": "https://www.city.nagasaki.lg.jp/page/4443.html",
+          "sourceLabel": "長崎市 公式サイト"
+        }
+      ]
+    },
+    "弘前公園": {
+      "parkings": [
+        {
+          "name": "弘前市立観光館駐車場",
+          "status": "open",
+          "fee": "最初の1時間は無料、以後30分ごと100円。入庫後12時間の最大は800円",
+          "hours": "24時間・年中無休",
+          "note": "追手門広場の中にあり、ねぷたや津軽塗の展示、物産直売所も同じ場所にあります。さくらまつりの期間は臨時駐車場が開設されます。",
+          "sourceUrl": "https://www.hirosakipark.jp/parking.html",
+          "sourceLabel": "弘前公園総合情報（弘前市）"
+        }
+      ]
+    },
+    "中尊寺": {
+      "parkings": [
+        {
+          "name": "中尊寺 第1・第2駐車場",
+          "status": "open",
+          "capacity": "第1が150台、第2が304台",
+          "fee": "普通車400円、大型車950円、マイクロバス800円、自動二輪車50円",
+          "note": "身体障害者の方は駐車料金が無料になります。もっとも近いのは民間の坂の上駐車場（30台）です。",
+          "sourceUrl": "https://hiraizumi.or.jp/info/parking.html",
+          "sourceLabel": "平泉観光協会 公式サイト"
+        }
+      ]
+    },
+    "角館武家屋敷通り": {
+      "parkings": [
+        {
+          "name": "市営桜並木駐車場（仙北市）",
+          "status": "open",
+          "fee": "通常期は一般車両500円、中型車1,000円、大型車3,000円",
+          "note": "桜まつりの期間は営業時間と料金が変わり、時期によっては22時まで延長されます。",
+          "sourceUrl": "https://www.city.semboku.akita.jp/sightseeing/spot/07_parking.html",
+          "sourceLabel": "仙北市 公式サイト"
+        }
+      ]
     }
   }
 }
