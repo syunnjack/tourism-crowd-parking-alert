@@ -118,6 +118,217 @@
           "sourceLabel": "太宰府市 公式サイト"
         }
       ]
+    },
+    "ダイバーシティ東京": {
+      "parkings": [
+        {
+          "name": "ダイバーシティ東京 プラザ 駐車場",
+          "status": "open",
+          "capacity": "約1,400台",
+          "hours": "24時間",
+          "note": "当日の買い物・食事の合計金額に応じて最大4時間まで無料になります。ポイントカード会員はさらに1時間、セゾンカード会員は2時間加算されます。",
+          "sourceUrl": "https://mitsui-shopping-park.com/divercity-tokyo/access/parking.html",
+          "sourceLabel": "ダイバーシティ東京 プラザ 公式サイト"
+        }
+      ]
+    },
+    "赤レンガ倉庫": {
+      "parkings": [
+        {
+          "name": "横浜赤レンガ倉庫 駐車場（P1・P2）",
+          "status": "open",
+          "capacity": "P1が83台、P2が96台",
+          "fee": "最初の1時間500円、以後30分ごと250円",
+          "hours": "24時間・年中無休",
+          "note": "1店舗で3,000円以上利用すると1時間無料券がもらえます。P2には電気自動車の普通充電器が2基あります。",
+          "sourceUrl": "https://www.yokohama-akarenga.jp/access/",
+          "sourceLabel": "横浜赤レンガ倉庫 公式サイト"
+        }
+      ]
+    },
+    "大涌谷": {
+      "parkings": [
+        {
+          "name": "大涌谷駐車場",
+          "status": "open",
+          "hours": "午前9時〜午後4時",
+          "fee": "平日は最初の2時間500円、以後30分ごと200円（最大1,300円）。休日は最初の30分500円、2時間まで1,000円、以後30分ごと400円（最大2,600円）",
+          "note": "休日の扱いは土日祝と12月29日〜1月3日、8月13日〜16日です。行楽期は周辺道路が混み合うため、箱根町はパーク＆ライドを案内しています。",
+          "sourceUrl": "https://www.hakone.or.jp/8396",
+          "sourceLabel": "箱根町観光協会 公式サイト"
+        }
+      ]
+    },
+    "蔵造りの町並み": {
+      "parkings": [
+        {
+          "name": "川越観光用駐車場",
+          "status": "open",
+          "capacity": "290台",
+          "fee": "無料",
+          "hours": "午前9時30分〜午後6時",
+          "note": "土日祝の午前10時から午後2時ごろは混み合い、満車になることがあります。市庁舎北側（90台）・南側（104台）の駐車場も、土日祝と年末年始は観光客が利用できます（昼間1時間400円）。",
+          "sourceUrl": "https://www.city.kawagoe.saitama.jp/kanko/kotsu/1011604.html",
+          "sourceLabel": "川越市 公式サイト"
+        }
+      ]
+    },
+    "三峯神社": {
+      "parkings": [
+        {
+          "name": "三峰駐車場（秩父市営）",
+          "status": "open",
+          "fee": "普通車520円、二輪車210円、マイクロバス1,040円、大型バス1,570円",
+          "hours": "通常は午前8時〜午後6時",
+          "note": "標高約1,000メートルにあり、駐車場までの道路には急カーブや狭い箇所があります。落石や動物の飛び出しにも注意が必要です。",
+          "sourceUrl": "https://www.city.chichibu.lg.jp/5697.html",
+          "sourceLabel": "秩父市 公式サイト"
+        }
+      ]
+    },
+    "日光東照宮": {
+      "parkings": [
+        {
+          "name": "日光東照宮 大駐車場",
+          "status": "open",
+          "capacity": "普通車200台",
+          "fee": "1日1台1回、普通車600円、マイクロバス1,200円、大型バス2,000円",
+          "hours": "年中無休",
+          "note": "普通車は予約不要です。マイクロバスと大型バスは7日前までの予約が必要で、土日祝と特別な行事の日は駐車できません。",
+          "sourceUrl": "https://toshogu.jp/pages/26/",
+          "sourceLabel": "日光東照宮 公式サイト"
+        }
+      ]
+    },
+    "旧軽井沢銀座": {
+      "parkings": [
+        {
+          "name": "旧軽井沢駐車場（軽井沢町営）",
+          "status": "open",
+          "capacity": "普通車213台、二輪車約17台",
+          "hours": "通年24時間",
+          "fee": "7〜9月は1時間未満500円、1時間以上は800円に1時間ごと300円加算。1〜6月と10〜12月は1時間未満500円、1時間以上は700円に1時間ごと200円加算",
+          "note": "大型・小型のコインロッカーもあります（500円・300円）。軽井沢町は町営駐車場の満空情報を公開しています。",
+          "sourceUrl": "https://www.town.karuizawa.lg.jp/page/1410.html",
+          "sourceLabel": "軽井沢町 公式サイト"
+        }
+      ]
+    },
+    "白馬岩岳": {
+      "parkings": [
+        {
+          "name": "白馬岩岳マウンテンリゾート 大駐車場",
+          "status": "open",
+          "capacity": "1,000台（ほかに無料駐車場が計4か所）",
+          "fee": "無料",
+          "note": "ゴンドラ山麓駅の目の前です。一部期間を除き24時間入場でき、無料の更衣室とトイレは8時〜17時に開いています。",
+          "sourceUrl": "https://iwatake-mountain-resort.com/access",
+          "sourceLabel": "白馬岩岳マウンテンリゾート 公式サイト"
+        }
+      ]
+    },
+    "兼六園": {
+      "parkings": [
+        {
+          "name": "兼六駐車場（石川県営）",
+          "status": "open",
+          "capacity": "乗用車480台（1階は観光バス40台）",
+          "fee": "1時間350円、以後30分ごと150円",
+          "hours": "24時間",
+          "note": "兼六園の桂坂口まで徒歩4分です。建替え工事にともなう台数の変更が告知されることがあるため、出発前に石川県の案内をご確認ください。",
+          "sourceUrl": "https://www.pref.ishikawa.lg.jp/toshi/kenrokuparking.html",
+          "sourceLabel": "石川県 公式サイト"
+        }
+      ]
+    },
+    "那須どうぶつ王国": {
+      "parkings": [
+        {
+          "name": "王国前駐車場",
+          "status": "open",
+          "note": "満車の場合は臨時駐車場を利用でき、臨時駐車場から園までは無料のシャトルバスが運行します。支払いは駐車場の精算機でのキャッシュレス決済、園内でのQR決済、フロントでの現金払いに対応しています。収容台数は公式サイトに記載がありません。",
+          "sourceUrl": "https://nasu-oukoku.com/?p=1877",
+          "sourceLabel": "那須どうぶつ王国 公式サイト"
+        }
+      ]
+    },
+    "富岩運河環水公園": {
+      "parkings": [
+        {
+          "name": "富岩運河環水公園 駐車場（平面・立体）",
+          "status": "open",
+          "hours": "平面は9時〜22時、立体は8時〜22時30分",
+          "note": "令和8年3月13日から有料になりました。ナンバー読み取り式で、出庫前に精算機で番号を入力して支払います。富山県美術館やスターバックスなどの利用者は、各施設が発行するQRサービス券で割引を受けられます。",
+          "sourceUrl": "https://www.pref.toyama.jp/1506/kendodukuri/toshikeikaku/kouenryokuchi/tyuusyajyouyuuryoukakaisi.html",
+          "sourceLabel": "富山県 公式サイト"
+        }
+      ]
+    },
+    "小樽運河": {
+      "parkings": [
+        {
+          "name": "小樽市観光駐車場（第1・第2）",
+          "status": "open",
+          "capacity": "第1が89台、第2が178台（普通車161台、キャンピングカー15台、身障者用2台、バイク23台）",
+          "fee": "60分300円、当日24時までの最大1,000円（土日祝も同額）",
+          "hours": "24時間",
+          "note": "小樽国際インフォメーションセンター内の「ポートマルシェotarue」で2,000円以上買い物するか、小樽海上観光船に乗ると1時間無料になります（どちらか1回）。",
+          "sourceUrl": "https://otaru.gr.jp/shop/parking",
+          "sourceLabel": "小樽観光協会 公式サイト"
+        }
+      ]
+    },
+    "旭山動物園": {
+      "parkings": [
+        {
+          "name": "旭山動物園周辺の駐車場",
+          "status": "open",
+          "capacity": "旭川市の無料駐車場が59台（うち障がい者用6台）。正門・西門周辺の民間駐車場が合わせて約1,100台",
+          "fee": "市の駐車場は無料。民間駐車場は無料と有料があり、有料は1日上限500円",
+          "note": "大型車専用の駐車場も約60台分あります。",
+          "sourceUrl": "https://www.city.asahikawa.hokkaido.jp/asahiyamazoo/generalinformation/d053767.html",
+          "sourceLabel": "旭川市 公式サイト"
+        }
+      ]
+    },
+    "函館山": {
+      "parkings": [
+        {
+          "name": "函館市函館山山麓観光駐車場",
+          "status": "open",
+          "capacity": "乗用車47台",
+          "note": "日没の時刻から混み合い、平日でも満車になります。函館山ロープウェイは周辺の有料駐車場と提携しておらず、無料・割引のサービスはありません。",
+          "sourceUrl": "https://www.city.hakodate.hokkaido.jp/docs/2021033100022/",
+          "sourceLabel": "函館市 公式サイト"
+        }
+      ]
+    },
+    "仙台城跡": {
+      "parkings": [
+        {
+          "name": "青葉城本丸会館 有料駐車場",
+          "status": "open",
+          "capacity": "100台（大型バスも可）",
+          "fee": "普通車600円",
+          "hours": "8時30分〜16時30分（季節により変動）",
+          "note": "イベント開催日は料金が変わることがあります。",
+          "sourceUrl": "https://honmarukaikan.com/s/docs/miru/parking.htm",
+          "sourceLabel": "青葉城 本丸会館 公式サイト"
+        }
+      ]
+    },
+    "松島海岸": {
+      "parkings": [
+        {
+          "name": "松島町営三十刈駐車場",
+          "status": "open",
+          "capacity": "普通車310台、大型バス14台",
+          "fee": "無料",
+          "note": "海岸沿いの松島観光物産館駐車場（70台）は提携施設の利用で割引があります。松島公園第2駐車場は大型バス専用で、最初の3時間1,000円、以後1時間ごと300円です。",
+          "sourceUrl": "https://www.matsushima-kanko.com/miru/detail.php?id=247",
+          "sourceLabel": "松島観光協会 公式サイト"
+        }
+      ]
     }
   }
 }
